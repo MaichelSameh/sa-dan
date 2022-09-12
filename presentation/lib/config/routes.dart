@@ -4,8 +4,6 @@ import '../screens/screens.dart';
 
 Map<String, Widget Function(BuildContext)> router =
     <String, Widget Function(BuildContext)>{
-  HomeScreen.route_name: (_) =>
-      const HomeScreen(key: Key(HomeScreen.route_name)),
   SplashScreen.route_name: (_) =>
       const SplashScreen(key: Key(SplashScreen.route_name)),
 };

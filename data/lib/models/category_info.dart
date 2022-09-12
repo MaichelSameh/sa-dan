@@ -1,9 +1,9 @@
-class CategorizationInfo {
+class CategoryInfo {
   late String _icon;
   late String _id;
   late String _name;
 
-  CategorizationInfo({
+  CategoryInfo({
     required String icon,
     required String id,
     required String name,
@@ -13,19 +13,19 @@ class CategorizationInfo {
     _name = name;
   }
 
-  CategorizationInfo.fromJson(Map<String, dynamic> data) {
+  CategoryInfo.fromJson(Map<String, dynamic> data) {
     _icon = data["icon"];
     _id = data["id"];
     _name = data["name_by_lang"];
   }
 
-  ///the categorization's icon url
+  ///the category's icon url
   String get icon => _icon;
 
-  ///the categorization's id
+  ///the category's id
   String get id => _id;
 
-  ///the categorization's name
+  ///the category's name
   String get name => _name;
 
   @override

@@ -3,6 +3,7 @@ import '../utils/numbers_util.dart';
 
 class AddressInfo {
   late int? _blockNumber;
+  late String _country;
   late String _city;
   late DateTime _createdAt;
   late int? _flatNumber;
@@ -17,6 +18,7 @@ class AddressInfo {
 
   AddressInfo({
     int? blockNumber,
+    required String country,
     required String city,
     required DateTime createdAt,
     int? flatNumber,
@@ -30,6 +32,7 @@ class AddressInfo {
     required AddressType type,
   }) {
     _blockNumber = blockNumber;
+    _country = country;
     _city = city;
     _createdAt = createdAt;
     _flatNumber = flatNumber;
@@ -45,6 +48,7 @@ class AddressInfo {
 
   AddressInfo.fromJson(Map<String, dynamic> data) {
     _blockNumber = data["block_number"].toString().toInt();
+    _country = data["country"];
     _city = data["city"];
     _createdAt = DateTime.parse(data["created_at"]);
     _flatNumber = data["flat_number"].toString().toInt();
@@ -63,6 +67,9 @@ class AddressInfo {
 
   ///the address's block number
   int? get blockNumber => _blockNumber;
+
+  ///the address's country
+  String get country => _country;
 
   ///the address's city
   String get city => _city;

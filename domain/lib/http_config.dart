@@ -17,11 +17,11 @@ class HttpConfig {
   static String get baseUrl => "${ApiConstants.server_protocol}$_baseUrl";
 
   HttpConfig._production() {
-    _baseUrl = "";
+    _baseUrl = "sa-dan.com";
   }
 
   HttpConfig._development() {
-    _baseUrl = "";
+    _baseUrl = "sa-dan.com";
   }
 
   ///this function is responsible of all the server requests

@@ -51,4 +51,32 @@ class ApiConstants {
   static const String faq_path = "faqs";
   //end of faqs paths
 
+  //address path
+  static const String address_path = "user/addresses";
+  //end of address path
+
+  //order paths
+  static const String delivered_orders_path =
+      "customer/profile/orders/delivered";
+  static const String active_orders_path = "customer/profile/orders/active";
+  static const String make_order_path = "products/order";
+  static const String mark_order_as_paid_path = "orders";
+  static const String cancel_order_path = "orders/cancel";
+  //end of order paths
+
+  //store path
+  static const String store_path = "stores";
+  //end of store path
+
+  //category path
+  static const String category_path = "categorizations";
+  //end of category path
+
+  //category path
+  static const String product_path = "products";
+  static const String top_rated_product_path = "products/top-rated";
+  static const String top_selling_product_path = "products/top-selling";
+  static const String favorites_path = "products/favorites";
+  static const String search_products_path = "search";
+  //end of category path
 }

@@ -59,13 +59,13 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color.fromRGBO(255, 255, 255, 1),
         textTheme: TextTheme(
           bodyMedium: TextStyle(
-            color: Palette.primary_color,
+            color: Colors.black,
             fontWeight: FontWeight.w500,
             fontSize: Get.locale?.languageCode == "ar" ? 16 : 18,
             height: 1.2,
           ),
           bodySmall: TextStyle(
-            color: Palette.primary_color,
+            color: Colors.black,
             fontWeight: FontWeight.normal,
             fontSize: Get.locale?.languageCode == "ar" ? 12 : 14,
             height: 1.2,
@@ -73,21 +73,21 @@ class MyApp extends StatelessWidget {
           titleLarge: TextStyle(
             fontSize: Get.locale?.languageCode == "ar" ? 33 : 35,
             fontWeight: FontWeight.w700,
-            color: Palette.primary_color,
+            color: Colors.black,
             height: 1.5,
             letterSpacing: -0.5,
           ),
           titleMedium: TextStyle(
             fontSize: Get.locale?.languageCode == "ar" ? 20 : 22,
             fontWeight: FontWeight.w700,
-            color: Palette.primary_color,
+            color: Colors.black,
             height: 1.5,
             letterSpacing: -0.5,
           ),
           titleSmall: TextStyle(
             fontSize: Get.locale?.languageCode == "ar" ? 18 : 20,
             fontWeight: FontWeight.w700,
-            color: Palette.primary_color,
+            color: Colors.black,
             height: 1.5,
             letterSpacing: -0.5,
           ),

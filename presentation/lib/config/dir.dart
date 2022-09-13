@@ -6,7 +6,7 @@ class Dir {
   static const String icon_path = "assets/icons/";
   static const String icon_suffix = "-icon.svg";
   static const String illustration_path = "assets/illustrations/";
-  static const String illustration_suffix = "-illustration.png";
+  static const String illustration_suffix = "-illustration.svg";
   static const String image_path = "assets/images/";
   static const String image_suffix = ".png";
   static const String logo_path = "assets/logos/";

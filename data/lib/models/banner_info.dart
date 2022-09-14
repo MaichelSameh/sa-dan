@@ -31,7 +31,7 @@ class BannerInfo {
   BannerInfo.fromJson(Map<String, dynamic> data) {
     _id = data['id'];
     _url = data['url'];
-    _titleByLang = data['title_by_lang'];
-    _mainMediaUrl = data['main_media_url'];
+    _titleByLang = data['name_by_lang'];
+    _mainMediaUrl = data['media_links'][0];
   }
 }

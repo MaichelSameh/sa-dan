@@ -4,5 +4,5 @@ import 'controllers.dart';
 
 void inject() {
   Get.put<UserController>(UserController());
-  // Get.put<HomeController>(HomeController());
+  Get.put<HomeController>(HomeController());
 }

@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import '../../../../config/config.dart';
 import '../../../../controllers/user_controller.dart';
 import '../../../../widgets/widgets.dart';
-import '../../../home/home_screen.dart';
+import '../../../navigation/navigation_screen.dart';
 
 class CustomerForm extends StatefulWidget {
   const CustomerForm({super.key});
@@ -43,7 +43,7 @@ class _CustomerFormState extends State<CustomerForm> {
         errorHandler(error);
       });
       Get.find<UserController>().setToken(res);
-      Get.offAllNamed(HomeScreen.route_name);
+      Get.offAllNamed(NavigationScreen.route_name);
     }
   }
 

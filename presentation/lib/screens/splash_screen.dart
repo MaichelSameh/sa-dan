@@ -5,7 +5,9 @@ import '../config/config.dart';
 import '../controllers/inject.dart';
 import '../controllers/user_controller.dart';
 import '../widgets/custom_image.dart';
-import 'home/home_screen.dart';
+
+import 'language_screen.dart';
+import 'navigation/navigation_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   // ignore: constant_identifier_names
@@ -22,7 +24,11 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     inject();
     Get.find<UserController>().init().then((_) {
-      Get.toNamed(HomeScreen.route_name);
+      if (Get.find<UserController>().logged) {
+        Get.toNamed(NavigationScreen.route_name);
+      } else {
+        Get.toNamed(LanguageScreen.route_name);
+      }
     });
   }
 

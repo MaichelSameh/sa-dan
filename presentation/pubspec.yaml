@@ -30,6 +30,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cached_network_image: ^3.2.2
+  carousel_slider: ^4.1.1
   cupertino_icons: ^1.0.5
   data:
     path: ../data

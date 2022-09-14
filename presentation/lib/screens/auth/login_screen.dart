@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import '../../config/config.dart';
 import '../../controllers/user_controller.dart';
 import '../../widgets/widgets.dart';
-import '../home/home_screen.dart';
+import '../navigation/navigation_screen.dart';
 import 'sign_up/sign_up_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
         errorHandler(error);
       });
       Get.find<UserController>().setToken(res);
-      Get.offAllNamed(HomeScreen.route_name);
+      Get.offAllNamed(NavigationScreen.route_name);
     }
   }
 

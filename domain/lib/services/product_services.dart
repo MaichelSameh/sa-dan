@@ -243,7 +243,6 @@ class ProductServices
 
   ///this function will fetch the top rated products
   Future<List<ProductInfo>> getTopRated({
-    required String id,
     String? token,
     int? page,
     String? lang,
@@ -276,7 +275,6 @@ class ProductServices
 
   ///this function will fetch the top rated selling
   Future<List<ProductInfo>> getTopSelling({
-    required String id,
     String? token,
     int? page,
     String? lang,

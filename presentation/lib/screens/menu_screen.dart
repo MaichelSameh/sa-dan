@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import '../config/config.dart';
 import '../controllers/user_controller.dart';
 import '../widgets/widgets.dart';
+import 'screens.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
@@ -88,11 +89,20 @@ class MenuScreen extends StatelessWidget {
                             size: size,
                             context: context,
                             label: "home".tr,
+                            onTap: () {
+                              Get.toNamed(NavigationScreen.route_name);
+                            },
                           ),
                           buildItem(
                             size: size,
                             context: context,
                             label: "language".tr,
+                            onTap: () {
+                              Get.toNamed(
+                                LanguageScreen.route_name,
+                                arguments: () => Get.back(),
+                              );
+                            },
                           ),
                           buildItem(
                             size: size,
@@ -103,31 +113,43 @@ class MenuScreen extends StatelessWidget {
                             size: size,
                             context: context,
                             label: "profile-setting".tr,
+                            onTap: () {
+                              Get.toNamed(EditProfileScreen.route_name);
+                            },
                           ),
+                          // buildItem(
+                          //   size: size,
+                          //   context: context,
+                          //   label: "location".tr,
+                          // ),
                           buildItem(
                             size: size,
                             context: context,
-                            label: "location".tr,
-                          ),
-                          buildItem(
-                            size: size,
-                            context: context,
-                            label: "notification".tr,
+                            label: "notifications".tr,
                           ),
                           buildItem(
                             size: size,
                             context: context,
                             label: "about".tr,
+                            onTap: () {
+                              Get.toNamed(AboutUsScreen.route_name);
+                            },
                           ),
                           buildItem(
                             size: size,
                             context: context,
                             label: "contact-us".tr,
+                            onTap: () {
+                              Get.toNamed(ContactUsScreen.route_name);
+                            },
                           ),
                           buildItem(
                             size: size,
                             context: context,
                             label: "terms-conditions".tr,
+                            onTap: () {
+                              Get.toNamed(TermsConditionsScreen.route_name);
+                            },
                           ),
                           GestureDetector(
                             onTap: () {
@@ -139,7 +161,7 @@ class MenuScreen extends StatelessWidget {
                               padding: EdgeInsets.symmetric(
                                   vertical: size.height(mobile: 20)),
                               child: Text(
-                                "sign-out",
+                                "sign-out".tr,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodySmall!
@@ -195,7 +217,10 @@ class MenuScreen extends StatelessWidget {
     void Function()? onTap,
   }) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        Get.back();
+        onTap?.call();
+      },
       child: Container(
         width: double.infinity,
         color: Colors.transparent,

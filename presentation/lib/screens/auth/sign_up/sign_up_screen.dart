@@ -38,12 +38,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
           SizedBox(height: size.height(mobile: 30)),
           buildSwitcher(size),
-          SizedBox(height: size.height(mobile: 30)),
+          SizedBox(height: size.height(mobile: 10)),
           Expanded(
             child: selectedForm == UserType.customer
                 ? const CustomerForm()
                 : const DriverForm(),
           ),
+          SizedBox(height: size.height(mobile: 10)),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

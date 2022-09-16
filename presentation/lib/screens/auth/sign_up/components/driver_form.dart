@@ -62,6 +62,7 @@ class _DriverFormState extends State<DriverForm> {
       child: ListView(
         padding: EdgeInsets.symmetric(horizontal: size.width(mobile: 35)),
         children: <Widget>[
+          SizedBox(height: size.height(mobile: 20)),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width(mobile: 4)),
             child: Text(
@@ -260,7 +261,7 @@ class _DriverFormState extends State<DriverForm> {
               textScaleFactor: 1,
             ),
           ),
-          SizedBox(height: size.height(mobile: 35)),
+          SizedBox(height: size.height(mobile: 10)),
         ],
       ),
     );

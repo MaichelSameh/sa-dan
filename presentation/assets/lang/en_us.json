@@ -68,6 +68,7 @@
     "delete-account": "Delete account",
     "do-not-have-account": "Don't have an account?",
     "need-login": "You need to login first",
+    "profile-updated": "Profile updated successfully",
     "onboarding-1-title": "Search for products",
     "onboarding-1-description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pulvinar massa id semper odio in maecenas orci. Lacus nulla sed fringilla commodo id pulvinar erat purus.",
     "onboarding-2-title": "Everything you want",
@@ -90,7 +91,7 @@
     "view-all": "View all",
     "most-popular": "Most popular",
     "top-rated": "Top rated",
-    "ho-there": "Hi there",
+    "hi-there": "Hi there",
     "language": "Language",
     "my-orders": "My orders",
     "profile-setting": "Profile setting",
@@ -98,5 +99,11 @@
     "notifications": "Notifications",
     "about": "About",
     "contact-us": "Contact us",
-    "terms-conditions": "Terms&Conditions"
+    "terms-conditions": "Terms&Conditions",
+    "about-us": "About us",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "instagram": "Instagram",
+    "youtube": "YouTube",
+    "edit-photo": "Edit photo"
 }

@@ -59,6 +59,7 @@ class _UpdatePasswordSheetState extends State<UpdatePasswordSheet> {
                     keyboardType: TextInputType.visiblePassword,
                     obscureText: true,
                     textInputAction: TextInputAction.next,
+                    color: Colors.transparent,
                     validate: (String? text) =>
                         Validators.validateName(text ?? ""),
                   ),
@@ -72,7 +73,7 @@ class _UpdatePasswordSheetState extends State<UpdatePasswordSheet> {
                       alignment: AlignmentDirectional.centerEnd,
                       child: Text(
                         "forgot-password?".tr,
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        style: Theme.of(context).textTheme.bodySmall,
                       ),
                     ),
                   ),
@@ -83,6 +84,7 @@ class _UpdatePasswordSheetState extends State<UpdatePasswordSheet> {
                     label: "new-password".tr,
                     textInputAction: TextInputAction.next,
                     obscureText: true,
+                    color: Colors.transparent,
                     validate: (String? text) =>
                         Validators.validatePassword(text ?? ""),
                   ),
@@ -92,7 +94,8 @@ class _UpdatePasswordSheetState extends State<UpdatePasswordSheet> {
                     keyboardType: TextInputType.visiblePassword,
                     textInputAction: TextInputAction.done,
                     obscureText: true,
-                    label: "repeat-new-password".tr,
+                    label: "repeat-password".tr,
+                    color: Colors.transparent,
                     validate: (String? text) =>
                         Validators.validateName(text ?? ""),
                   ),

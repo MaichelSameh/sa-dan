@@ -87,7 +87,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Container(
-              height: widget.height ?? size.height(mobile: 50),
+              height: widget.height ?? 50,
               decoration: BoxDecoration(
                 color: widget.color ?? const Color.fromRGBO(247, 248, 249, 1),
                 borderRadius: widget.radius ??
@@ -112,13 +112,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                                 : TextAlignVertical.center),
                         maxLines: widget.expanded ? null : 1,
                         style: widget.style ??
-                            Theme.of(context).textTheme.bodySmall!.copyWith(
-                                  fontSize: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall!
-                                          .fontSize! +
-                                      2,
-                                ),
+                            Theme.of(context).textTheme.bodySmall!,
                         expands: widget.expanded,
                         focusNode: widget.focusNode,
                         textCapitalization: widget.textCapitalization ??
@@ -127,11 +121,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                           label: widget.label != null
                               ? Text(
                                   widget.label!,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(
-                                          color: Colors.white.withOpacity(0.4)),
+                                  style: Theme.of(context).textTheme.bodySmall,
                                   textScaleFactor: 1,
                                 )
                               : null,

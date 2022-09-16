@@ -55,6 +55,7 @@ class _CustomerFormState extends State<CustomerForm> {
       child: ListView(
         padding: EdgeInsets.symmetric(horizontal: size.width(mobile: 35)),
         children: <Widget>[
+          SizedBox(height: size.height(mobile: 20)),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width(mobile: 4)),
             child: Text(
@@ -71,7 +72,7 @@ class _CustomerFormState extends State<CustomerForm> {
             controller: nameController,
             keyboardType: TextInputType.name,
             textInputAction: TextInputAction.next,
-            validate: Validators.validateEmail,
+            validate: Validators.validateName,
           ),
           SizedBox(height: size.height(mobile: 14)),
           Padding(
@@ -109,7 +110,7 @@ class _CustomerFormState extends State<CustomerForm> {
             controller: phoneController,
             keyboardType: TextInputType.phone,
             textInputAction: TextInputAction.next,
-            validate: Validators.validateEmail,
+            validate: Validators.validatePhoneNumber,
           ),
           SizedBox(height: size.height(mobile: 14)),
           Padding(
@@ -159,6 +160,7 @@ class _CustomerFormState extends State<CustomerForm> {
               textScaleFactor: 1,
             ),
           ),
+          SizedBox(height: size.height(mobile: 10)),
         ],
       ),
     );

@@ -4,9 +4,7 @@ import 'package:get/get.dart';
 
 import '../config/config.dart';
 import '../config/localization.dart';
-import '../controllers/user_controller.dart';
 import '../widgets/widgets.dart';
-import 'screens.dart';
 
 class LanguageScreen extends StatefulWidget {
   // ignore: constant_identifier_names
@@ -99,10 +97,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width(mobile: 30)),
             child: Button(
-              onTap: () {
-                Get.find<UserController>().logIn();
-                Get.toNamed(OnboardingScreen.route_name);
-              },
+              onTap: Get.arguments,
               child: Text(
                 "next".tr,
                 style: Theme.of(context)

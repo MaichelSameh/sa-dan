@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
           Center(
             child: CustomTextFormField(
               width: size.width(mobile: 260),
-              height: size.height(mobile: 30),
+              height: 30,
               padding: EdgeInsets.symmetric(
                 horizontal: size.width(mobile: 12),
               ),

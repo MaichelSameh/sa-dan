@@ -36,43 +36,48 @@ class _CategoriesSectionState extends State<CategoriesSection> {
         ? const Preloader()
         : SizedBox(
             height: size.height(mobile: 105),
-            child: ListView(
-              padding: EdgeInsets.symmetric(horizontal: size.width(mobile: 20)),
-              scrollDirection: Axis.horizontal,
-              children: <Widget>[
-                for (CategoryInfo category
-                    in Get.find<HomeController>().categories)
-                  Container(
-                    color: Colors.transparent,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: size.width(mobile: 5)),
-                    child: Column(
-                      children: <Widget>[
-                        ClipRRect(
-                          borderRadius:
-                              BorderRadius.circular(size.width(mobile: 15)),
-                          child: CustomImage(
-                            imagePath: Dir.getImagePath(category.icon),
-                            width: size.width(mobile: 77),
-                            height: size.width(mobile: 79),
-                          ),
+            child: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return ListView(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: size.width(mobile: 20)),
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    for (CategoryInfo category
+                        in Get.find<HomeController>().categories)
+                      Container(
+                        color: Colors.transparent,
+                        padding: EdgeInsets.symmetric(
+                            horizontal: size.width(mobile: 5)),
+                        child: Column(
+                          children: <Widget>[
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(
+                                  constraints.maxHeight / 6),
+                              child: CustomImage(
+                                imagePath: category.icon,
+                                width: constraints.maxHeight * 3 / 5,
+                                height: constraints.maxHeight * 3 / 5,
+                              ),
+                            ),
+                            SizedBox(height: constraints.maxHeight / 12),
+                            Text(
+                              category.name,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall!
+                                  .copyWith(
+                                      fontSize: Get.locale?.languageCode == "ar"
+                                          ? 10
+                                          : 12),
+                              textScaleFactor: 1,
+                            ),
+                          ],
                         ),
-                        SizedBox(height: size.height(mobile: 5)),
-                        Text(
-                          category.name,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(
-                                  fontSize: Get.locale?.languageCode == "ar"
-                                      ? 10
-                                      : 12),
-                          textScaleFactor: 1,
-                        ),
-                      ],
-                    ),
-                  )
-              ],
+                      )
+                  ],
+                );
+              },
             ),
           );
   }

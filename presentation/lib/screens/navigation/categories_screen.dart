@@ -64,7 +64,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
           Center(
             child: CustomTextFormField(
               width: size.width(mobile: 260),
-              height: size.height(mobile: 30),
+              height: 30,
               padding: EdgeInsets.symmetric(
                 horizontal: size.width(mobile: 12),
               ),
@@ -89,7 +89,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
           for (CategoryInfo category in Get.find<HomeController>().categories)
             Container(
               width: double.infinity,
-              height: size.height(mobile: 75),
+              height: size.width(mobile: 75),
               margin: EdgeInsets.symmetric(
                   horizontal: size.width(mobile: 22),
                   vertical: size.height(mobile: 9)),

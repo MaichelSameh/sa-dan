@@ -17,6 +17,7 @@ class SheetLayout extends StatelessWidget {
     return Card(
       elevation: 0,
       color: Colors.transparent,
+      margin: EdgeInsets.zero,
       child: Container(
         width: double.infinity,
         padding: EdgeInsets.symmetric(vertical: size.height(mobile: 17)),

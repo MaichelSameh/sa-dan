@@ -8,6 +8,7 @@ import '../widgets/custom_image.dart';
 
 import 'language_screen.dart';
 import 'navigation/navigation_screen.dart';
+import 'onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   // ignore: constant_identifier_names
@@ -27,7 +28,10 @@ class _SplashScreenState extends State<SplashScreen> {
       if (Get.find<UserController>().logged) {
         Get.toNamed(NavigationScreen.route_name);
       } else {
-        Get.toNamed(LanguageScreen.route_name);
+        Get.toNamed(LanguageScreen.route_name, arguments: () {
+          Get.find<UserController>().logIn();
+          Get.toNamed(OnboardingScreen.route_name);
+        });
       }
     });
   }

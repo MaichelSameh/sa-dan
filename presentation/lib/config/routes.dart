@@ -4,6 +4,12 @@ import '../screens/screens.dart';
 
 Map<String, Widget Function(BuildContext)> router =
     <String, Widget Function(BuildContext)>{
+  AboutUsScreen.route_name: (_) =>
+      const AboutUsScreen(key: Key(AboutUsScreen.route_name)),
+  ContactUsScreen.route_name: (_) =>
+      const ContactUsScreen(key: Key(ContactUsScreen.route_name)),
+  EditProfileScreen.route_name: (_) =>
+      const EditProfileScreen(key: Key(EditProfileScreen.route_name)),
   NavigationScreen.route_name: (_) =>
       const NavigationScreen(key: Key(NavigationScreen.route_name)),
   LanguageScreen.route_name: (_) =>
@@ -12,6 +18,8 @@ Map<String, Widget Function(BuildContext)> router =
       const OnboardingScreen(key: Key(OnboardingScreen.route_name)),
   SplashScreen.route_name: (_) =>
       const SplashScreen(key: Key(SplashScreen.route_name)),
+  TermsConditionsScreen.route_name: (_) =>
+      const TermsConditionsScreen(key: Key(TermsConditionsScreen.route_name)),
 
   //auth routes
   ForgotPasswordScreen.route_name: (_) =>

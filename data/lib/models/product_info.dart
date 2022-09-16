@@ -1,10 +1,13 @@
+import '../extensions/map_to_list_extension.dart';
 import '../utils/numbers_util.dart';
+import 'classification_info.dart';
 
 class ProductInfo {
   late double _averageRate;
   late String _categoryId;
   late DateTime _createdAt;
   late String _creatorId;
+  late List<ClassificationInfo> _classification;
   late String _description;
   late String _id;
   late List<String> _mainMedia;
@@ -17,6 +20,7 @@ class ProductInfo {
     required String categoryId,
     required DateTime createdAt,
     required String creatorId,
+    required List<ClassificationInfo> classification,
     required String description,
     required String id,
     required List<String> mainMedia,
@@ -28,6 +32,7 @@ class ProductInfo {
     _categoryId = categoryId;
     _createdAt = createdAt;
     _creatorId = creatorId;
+    _classification = classification;
     _description = description;
     _id = id;
     _mainMedia = mainMedia;
@@ -41,6 +46,8 @@ class ProductInfo {
     _categoryId = data["categorization_id"];
     _createdAt = DateTime.parse(data["created_at"]);
     _creatorId = data["creator_id"];
+    _classification = (data["product_classifications"] as List<dynamic>)
+        .listClassifications();
     _description = data["overview_by_lang"];
     _id = data["id"];
     _mainMediaUrl = data["main_media_url"];
@@ -64,6 +71,9 @@ class ProductInfo {
   ///the product's creator's id
   String get creatorId => _creatorId;
 
+  ///the product's available classifications
+  List<ClassificationInfo> get classification => _classification;
+
   ///the product's description
   String get description => _description;
 
@@ -84,6 +94,6 @@ class ProductInfo {
 
   @override
   String toString() {
-    return 'ProductInfo(_averageRate: $_averageRate, _categoryId: $_categoryId, _createdAt: $_createdAt, _creatorId: $_creatorId, _description: $_description, _id: $_id, _mainMedia: $_mainMedia, _mainMediaUrl: $_mainMediaUrl, _name: $_name, _viewCount: $_viewCount)';
+    return 'ProductInfo(_averageRate: $_averageRate, _categoryId: $_categoryId, _createdAt: $_createdAt, _creatorId: $_creatorId, _classification: $_classification, _description: $_description, _id: $_id, _mainMedia: $_mainMedia, _mainMediaUrl: $_mainMediaUrl, _name: $_name, _viewCount: $_viewCount)';
   }
 }

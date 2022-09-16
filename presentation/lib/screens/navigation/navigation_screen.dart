@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 
 import '../../widgets/widgets.dart';
 import 'categories_screen.dart';
+import 'edit_profile_page.dart';
+import 'favorites_page.dart';
 import 'home/home_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
@@ -35,6 +37,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
             children: const <Widget>[
               HomePage(),
               CategoriesPage(),
+              FavoritesPage(),
+              EditProfilePage(),
             ],
           ),
           BottomNavBar(

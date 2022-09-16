@@ -6,18 +6,23 @@ Map<String, Widget Function(BuildContext)> router =
     <String, Widget Function(BuildContext)>{
   AboutUsScreen.route_name: (_) =>
       const AboutUsScreen(key: Key(AboutUsScreen.route_name)),
+  CategorizationDetailsScreen.route_name: (_) =>
+      const CategorizationDetailsScreen(
+          key: Key(CategorizationDetailsScreen.route_name)),
   ContactUsScreen.route_name: (_) =>
       const ContactUsScreen(key: Key(ContactUsScreen.route_name)),
-  EditProfileScreen.route_name: (_) =>
-      const EditProfileScreen(key: Key(EditProfileScreen.route_name)),
   NavigationScreen.route_name: (_) =>
       const NavigationScreen(key: Key(NavigationScreen.route_name)),
   LanguageScreen.route_name: (_) =>
       const LanguageScreen(key: Key(LanguageScreen.route_name)),
   OnboardingScreen.route_name: (_) =>
       const OnboardingScreen(key: Key(OnboardingScreen.route_name)),
+  ProductDetailsScreen.route_name: (_) =>
+      const ProductDetailsScreen(key: Key(ProductDetailsScreen.route_name)),
   SplashScreen.route_name: (_) =>
       const SplashScreen(key: Key(SplashScreen.route_name)),
+  StoreDetailsScreen.route_name: (_) =>
+      const StoreDetailsScreen(key: Key(StoreDetailsScreen.route_name)),
   TermsConditionsScreen.route_name: (_) =>
       const TermsConditionsScreen(key: Key(TermsConditionsScreen.route_name)),
 

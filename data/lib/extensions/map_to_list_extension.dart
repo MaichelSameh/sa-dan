@@ -40,6 +40,19 @@ extension MapToList on List<dynamic> {
     return list;
   }
 
+  ///this function will convert a [List] of [Map] into [List] of [ClassificationInfo]
+  List<ClassificationInfo> listClassifications() {
+    //creating a local variable to store the list
+    List<ClassificationInfo> list = <ClassificationInfo>[];
+    //looping into the list
+    for (dynamic item in this) {
+      //converting the map into the object
+      list.add(ClassificationInfo.fromJson(item));
+    }
+    //returning the list
+    return list;
+  }
+
   ///this function will convert a [List] of [Map] into [List] of [FaqInfo]
   List<FaqInfo> listFaqs() {
     //creating a local variable to store the list

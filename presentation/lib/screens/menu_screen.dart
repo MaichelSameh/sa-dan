@@ -114,14 +114,12 @@ class MenuScreen extends StatelessWidget {
                             context: context,
                             label: "profile-setting".tr,
                             onTap: () {
-                              Get.toNamed(EditProfileScreen.route_name);
+                              Get.toNamed(
+                                NavigationScreen.route_name,
+                                arguments: 3,
+                              );
                             },
                           ),
-                          // buildItem(
-                          //   size: size,
-                          //   context: context,
-                          //   label: "location".tr,
-                          // ),
                           buildItem(
                             size: size,
                             context: context,

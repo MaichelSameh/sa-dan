@@ -1,6 +1,7 @@
 export 'address_info.dart';
 export 'banner_info.dart';
 export 'category_info.dart';
+export 'classification_info.dart';
 export 'faq_info.dart';
 export 'filter_info.dart';
 export 'general/about_info.dart';
@@ -15,5 +16,6 @@ export 'price_info.dart';
 export 'product_info.dart';
 export 'profile_info.dart';
 export 'review_info.dart';
+export 'size_info.dart';
 export 'store_info.dart';
 export 'token_info.dart';

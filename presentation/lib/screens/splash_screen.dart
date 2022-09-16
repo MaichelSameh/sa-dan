@@ -26,11 +26,11 @@ class _SplashScreenState extends State<SplashScreen> {
     inject();
     Get.find<UserController>().init().then((_) {
       if (Get.find<UserController>().logged) {
-        Get.toNamed(NavigationScreen.route_name);
+        Get.offAllNamed(NavigationScreen.route_name);
       } else {
-        Get.toNamed(LanguageScreen.route_name, arguments: () {
+        Get.offAllNamed(LanguageScreen.route_name, arguments: () {
           Get.find<UserController>().logIn();
-          Get.toNamed(OnboardingScreen.route_name);
+          Get.offAllNamed(OnboardingScreen.route_name);
         });
       }
     });

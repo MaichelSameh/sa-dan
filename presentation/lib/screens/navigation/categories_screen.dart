@@ -6,6 +6,7 @@ import '../../config/config.dart';
 import '../../controllers/home_controller.dart';
 import '../../widgets/custom_image.dart';
 import '../../widgets/custom_text_field.dart';
+import '../categorization_details_screen.dart';
 import '../menu_screen.dart';
 import 'home/components/banners_section.dart';
 
@@ -87,89 +88,99 @@ class _CategoriesPageState extends State<CategoriesPage> {
           ),
           SizedBox(height: size.height(mobile: 9)),
           for (CategoryInfo category in Get.find<HomeController>().categories)
-            Container(
-              width: double.infinity,
-              height: size.width(mobile: 75),
-              margin: EdgeInsets.symmetric(
-                  horizontal: size.width(mobile: 22),
-                  vertical: size.height(mobile: 9)),
-              child: Stack(
-                children: <Widget>[
-                  Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    margin: EdgeInsetsDirectional.only(
-                      start: size.width(mobile: 40),
-                      end: size.width(mobile: 14),
-                    ),
-                    padding: EdgeInsetsDirectional.only(
-                      start: size.width(mobile: 40),
-                      end: size.width(mobile: 20),
-                    ),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).scaffoldBackgroundColor,
-                      borderRadius: BorderRadiusDirectional.only(
-                        topStart: Radius.circular(size.width(mobile: 20)),
-                        bottomStart: Radius.circular(size.width(mobile: 20)),
-                        topEnd: Radius.circular(size.width(mobile: 10)),
-                        bottomEnd: Radius.circular(size.width(mobile: 10)),
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(
+                  CategorizationDetailsScreen.route_name,
+                  arguments: category,
+                );
+              },
+              child: Container(
+                color: Colors.transparent,
+                width: double.infinity,
+                height: size.width(mobile: 75),
+                margin: EdgeInsets.symmetric(
+                    horizontal: size.width(mobile: 22),
+                    vertical: size.height(mobile: 9)),
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      width: double.infinity,
+                      height: double.infinity,
+                      margin: EdgeInsetsDirectional.only(
+                        start: size.width(mobile: 40),
+                        end: size.width(mobile: 14),
                       ),
-                      boxShadow: const <BoxShadow>[
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.25),
-                          blurRadius: 8,
+                      padding: EdgeInsetsDirectional.only(
+                        start: size.width(mobile: 40),
+                        end: size.width(mobile: 20),
+                      ),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).scaffoldBackgroundColor,
+                        borderRadius: BorderRadiusDirectional.only(
+                          topStart: Radius.circular(size.width(mobile: 20)),
+                          bottomStart: Radius.circular(size.width(mobile: 20)),
+                          topEnd: Radius.circular(size.width(mobile: 10)),
+                          bottomEnd: Radius.circular(size.width(mobile: 10)),
                         ),
-                      ],
+                        boxShadow: const <BoxShadow>[
+                          BoxShadow(
+                            color: Color.fromRGBO(0, 0, 0, 0.25),
+                            blurRadius: 8,
+                          ),
+                        ],
+                      ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        category.name,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        textScaleFactor: 1,
+                        softWrap: true,
+                        maxLines: 1,
+                      ),
                     ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      category.name,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                      textScaleFactor: 1,
-                      softWrap: true,
-                      maxLines: 1,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Container(
-                        width: size.width(mobile: 70),
-                        height: size.width(mobile: 70),
-                        padding: EdgeInsets.all(size.width(mobile: 4)),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Palette.primary_color),
-                          shape: BoxShape.circle,
-                        ),
-                        child: ClipRRect(
-                          borderRadius:
-                              BorderRadius.circular(size.width(mobile: 70)),
-                          child: CustomImage(
-                            imagePath: category.icon,
-                            width: size.width(mobile: 60),
-                            height: size.width(mobile: 60),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          width: size.width(mobile: 70),
+                          height: size.width(mobile: 70),
+                          padding: EdgeInsets.all(size.width(mobile: 4)),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Palette.primary_color),
+                            shape: BoxShape.circle,
+                          ),
+                          child: ClipRRect(
+                            borderRadius:
+                                BorderRadius.circular(size.width(mobile: 70)),
+                            child: CustomImage(
+                              imagePath: category.icon,
+                              width: size.width(mobile: 60),
+                              height: size.width(mobile: 60),
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: size.width(mobile: 27),
-                        height: size.width(mobile: 27),
-                        padding: EdgeInsets.all(size.width(mobile: 6)),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).scaffoldBackgroundColor,
-                          shape: BoxShape.circle,
-                          boxShadow: const <BoxShadow>[
-                            BoxShadow(
-                              color: Color.fromRGBO(0, 0, 0, 0.25),
-                              blurRadius: 6,
-                            ),
-                          ],
+                        Container(
+                          width: size.width(mobile: 27),
+                          height: size.width(mobile: 27),
+                          padding: EdgeInsets.all(size.width(mobile: 6)),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).scaffoldBackgroundColor,
+                            shape: BoxShape.circle,
+                            boxShadow: const <BoxShadow>[
+                              BoxShadow(
+                                color: Color.fromRGBO(0, 0, 0, 0.25),
+                                blurRadius: 6,
+                              ),
+                            ],
+                          ),
+                          child:
+                              CustomImage(imagePath: Dir.getIconPath("next")),
                         ),
-                        child: CustomImage(imagePath: Dir.getIconPath("next")),
-                      ),
-                    ],
-                  )
-                ],
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           SizedBox(height: size.height(mobile: 130) + size.bottomPadding),

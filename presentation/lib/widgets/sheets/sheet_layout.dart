@@ -13,7 +13,7 @@ class SheetLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = Size(context);
+    Size size = Size(context: context);
     return Card(
       elevation: 0,
       color: Colors.transparent,

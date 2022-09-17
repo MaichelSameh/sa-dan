@@ -47,7 +47,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = Size(context);
+    Size size = Size(context: context);
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -122,6 +122,12 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                                 LayoutBuilder(
                                   builder: (BuildContext context,
                                       BoxConstraints constraints) {
+                                    Size size = Size(
+                                      context: context,
+                                      constrain: constraints,
+                                      customModelHeight: 145,
+                                      customModelWidth: 160,
+                                    );
                                     return GestureDetector(
                                       onTap: () {
                                         UrlServices().launchUrl(link["link"]!);
@@ -141,8 +147,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                                             ),
                                           ],
                                           borderRadius: BorderRadius.circular(
-                                              constraints.maxHeight *
-                                                  (15 / 145)),
+                                              size.height(mobile: 15)),
                                         ),
                                         child: Column(
                                           children: <Widget>[
@@ -153,7 +158,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                                             const Spacer(),
                                             SizedBox(
                                               width: constraints.maxWidth -
-                                                  constraints.maxWidth / 5,
+                                                  size.width(mobile: 10),
                                               child: Text(
                                                 link["title"]!,
                                                 style: Theme.of(context)

@@ -18,7 +18,7 @@ class LanguageScreen extends StatefulWidget {
 class _LanguageScreenState extends State<LanguageScreen> {
   @override
   Widget build(BuildContext context) {
-    Size size = Size(context);
+    Size size = Size(context: context);
     return Scaffold(
       body: Column(
         children: <Widget>[

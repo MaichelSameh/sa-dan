@@ -21,7 +21,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
   final TextEditingController searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    Size size = Size(context);
+    Size size = Size(context: context);
     return Scaffold(
       body: ListView(
         padding: EdgeInsets.zero,

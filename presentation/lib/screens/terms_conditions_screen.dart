@@ -47,7 +47,7 @@ class _TermsConditionsScreenState extends State<TermsConditionsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = Size(context);
+    Size size = Size(context: context);
     return Scaffold(
       body: Stack(
         children: <Widget>[

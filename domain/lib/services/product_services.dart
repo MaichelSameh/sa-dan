@@ -282,7 +282,7 @@ class ProductServices
     try {
       await HttpConfig.instance().checkConnectivity();
       Uri localLink = _httpConfig.getApiLink(
-        ApiConstants.top_rated_product_path,
+        ApiConstants.top_selling_product_path,
         <String, String>{
           "lang": lang ?? "en",
           "page": (page ?? 1).toString(),

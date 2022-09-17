@@ -78,7 +78,7 @@ class _CategorizationDetailsScreenState
 
   @override
   Widget build(BuildContext context) {
-    Size size = Size(context);
+    Size size = Size(context: context);
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -200,6 +200,12 @@ class _CategorizationDetailsScreenState
                         LayoutBuilder(
                           builder: (BuildContext context,
                               BoxConstraints constraints) {
+                            Size size = Size(
+                              context: context,
+                              constrain: constraints,
+                              customModelHeight: 180,
+                              customModelWidth: 170,
+                            );
                             return GestureDetector(
                               onTap: () {
                                 Get.toNamed(
@@ -210,51 +216,41 @@ class _CategorizationDetailsScreenState
                               child: Container(
                                 height: constraints.maxHeight,
                                 width: constraints.maxWidth,
-                                // padding: EdgeInsets.symmetric(
-                                //   vertical: size.width(
-                                //       mobile: constraints.maxHeight * 15 / 180),
-                                //   horizontal: size.width(
-                                //       mobile: constraints.maxWidth * 7 / 170),
-                                // ),
                                 decoration: BoxDecoration(
                                     color:
                                         const Color.fromRGBO(247, 248, 249, 0),
                                     borderRadius: BorderRadius.circular(
-                                        constraints.maxWidth * 30 / 170),
-                                    border:
-                                        Border.all(color: Palette.primary_color)
-                                    // boxShadow: const <BoxShadow>[
-                                    //   BoxShadow(
-                                    //     color: Color.fromRGBO(0, 0, 0, 0.25),
-                                    //     blurRadius: 5,
-                                    //   ),
-                                    // ],
-                                    ),
+                                        size.width(mobile: 30)),
+                                    border: Border.all(
+                                        color: Palette.primary_color)),
                                 child: Column(
                                   children: <Widget>[
                                     ClipRRect(
                                       borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(
-                                            constraints.maxWidth * 30 / 170),
+                                            size.width(mobile: 30)),
                                         topRight: Radius.circular(
-                                            constraints.maxWidth * 30 / 170),
+                                            size.width(mobile: 30)),
                                       ),
                                       child: CustomImage(
                                         imagePath: store.logoUrl,
                                         width: double.infinity,
-                                        height:
-                                            constraints.maxHeight * 2 / 3 - 4,
+                                        height: size.height(mobile: 110),
                                       ),
                                     ),
                                     SizedBox(
-                                      height: constraints.maxHeight / 3,
+                                      height: size.height(mobile: 60),
                                       width: constraints.maxWidth,
                                       child: Center(
                                         child: Text(
                                           store.name,
                                           style: Theme.of(context)
                                               .textTheme
-                                              .bodySmall,
+                                              .bodySmall!
+                                              .copyWith(
+                                                color: Palette.primary_color,
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                           textScaleFactor: 1,
                                           textAlign: TextAlign.center,
                                           softWrap: true,

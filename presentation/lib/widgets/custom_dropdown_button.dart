@@ -79,7 +79,7 @@ class CustomDropdownButton<T> extends StatefulWidget {
     this.onTap,
     this.separatorBuilder,
     this.listColor,
-    this.buttonColor = Colors.black12,
+    this.buttonColor = const Color.fromRGBO(247, 248, 249, 1),
     this.animationDurationInMilliseconds = 400,
     this.icon,
     this.maxHeight,

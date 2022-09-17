@@ -36,7 +36,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   int currentPage = 0;
   @override
   Widget build(BuildContext context) {
-    Size size = Size(context);
+    Size size = Size(context: context);
     return Scaffold(
       body: Column(
         children: <Widget>[

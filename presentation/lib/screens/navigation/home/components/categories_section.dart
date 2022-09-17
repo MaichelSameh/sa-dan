@@ -32,7 +32,7 @@ class _CategoriesSectionState extends State<CategoriesSection> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = Size(context);
+    Size size = Size(context: context);
     return !isLoaded
         ? const Preloader()
         : SizedBox(

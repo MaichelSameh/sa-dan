@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../widgets/widgets.dart';
@@ -24,34 +25,50 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        alignment: Alignment.bottomCenter,
-        children: <Widget>[
-          PageView(
-            onPageChanged: (int newPage) {
-              currentPage = newPage;
-              setState(() {});
-            },
-            controller: pageController,
-            children: const <Widget>[
-              HomePage(),
-              CategoriesPage(),
-              FavoritesPage(),
-              EditProfilePage(),
-            ],
-          ),
-          BottomNavBar(
-            currentPage: currentPage,
-            onPageChanged: (int newPage) {
-              pageController.animateToPage(
-                newPage,
-                duration: const Duration(milliseconds: 250),
-                curve: Curves.easeIn,
-              );
-            },
-          ),
-        ],
+    return WillPopScope(
+      onWillPop: () async {
+        if (currentPage == 1) {
+          return true;
+        } else {
+          pageController.animateToPage(
+            0,
+            duration: const Duration(milliseconds: 250),
+            curve: Curves.easeIn,
+          );
+          return false;
+        }
+      },
+      child: Scaffold(
+        body: Stack(
+          alignment: Alignment.bottomCenter,
+          children: <Widget>[
+            PageView(
+              onPageChanged: (int newPage) {
+                FocusScope.of(context).unfocus();
+                SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+                currentPage = newPage;
+                setState(() {});
+              },
+              controller: pageController,
+              children: const <Widget>[
+                HomePage(),
+                CategoriesPage(),
+                FavoritesPage(),
+                EditProfilePage(),
+              ],
+            ),
+            BottomNavBar(
+              currentPage: currentPage,
+              onPageChanged: (int newPage) {
+                pageController.animateToPage(
+                  newPage,
+                  duration: const Duration(milliseconds: 250),
+                  curve: Curves.easeIn,
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -104,5 +104,12 @@
     "twitter": "تويتر",
     "instagram": "انستاجرام",
     "youtube": "يوتيوب",
-    "edit-photo": "تغيير الصوره"
+    "edit-photo": "تغيير الصوره",
+    "star-rating-count": "@count نجوم",
+    "per-portion": "لكل جزء",
+    "description": "وصف",
+    "customize-order": "تخصيص طلبك",
+    "number-of-portion": "عدد القطع",
+    "total-price": "السعر الكلي",
+    "order-now": "اطلب الان"
 }

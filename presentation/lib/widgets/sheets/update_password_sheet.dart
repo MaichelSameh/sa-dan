@@ -41,7 +41,7 @@ class _UpdatePasswordSheetState extends State<UpdatePasswordSheet> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = Size(context);
+    Size size = Size(context: context);
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[

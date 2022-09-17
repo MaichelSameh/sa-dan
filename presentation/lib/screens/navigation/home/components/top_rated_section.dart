@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../../config/config.dart';
 import '../../../../controllers/home_controller.dart';
 import '../../../../widgets/widgets.dart';
+import '../../../product_details_screen.dart';
 
 class TopRatedSection extends StatefulWidget {
   const TopRatedSection({super.key});
@@ -30,7 +31,7 @@ class _TopRatedSectionState extends State<TopRatedSection> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = Size(context);
+    Size size = Size(context: context);
     return !isLoaded
         ? const Preloader()
         : Get.find<HomeController>().topRatedProducts.isEmpty
@@ -74,54 +75,67 @@ class _TopRatedSectionState extends State<TopRatedSection> {
                       children: <Widget>[
                         for (ProductInfo product
                             in Get.find<HomeController>().topRatedProducts)
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(
-                                    size.width(mobile: 20)),
-                                child: CustomImage(
-                                  imagePath: product.mainMediaUrl,
-                                  width: double.infinity,
-                                  height: size.height(mobile: 165),
-                                ),
-                              ),
-                              SizedBox(height: size.height(mobile: 3)),
-                              Text(
-                                product.name,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall!
-                                    .copyWith(
-                                      fontSize: Get.locale?.languageCode == "ar"
-                                          ? 10
-                                          : 12,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                textScaleFactor: 1,
-                              ),
-                              Row(
+                          GestureDetector(
+                            onTap: () {
+                              Get.toNamed(
+                                ProductDetailsScreen.route_name,
+                                arguments: product,
+                              );
+                            },
+                            child: Container(
+                              color: Colors.transparent,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: <Widget>[
-                                  CustomImage(
-                                    imagePath: Dir.getIconPath("star-full"),
-                                    height: size.height(mobile: 9),
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(
+                                        size.width(mobile: 20)),
+                                    child: CustomImage(
+                                      imagePath: product.mainMediaUrl,
+                                      width: double.infinity,
+                                      height: size.height(mobile: 165),
+                                    ),
                                   ),
-                                  SizedBox(width: size.width(mobile: 3)),
+                                  SizedBox(height: size.height(mobile: 3)),
                                   Text(
-                                    product.averageRate.toInt().toString(),
+                                    product.name,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodySmall!
                                         .copyWith(
-                                            fontSize:
-                                                Get.locale?.languageCode == "ar"
-                                                    ? 6
-                                                    : 8),
+                                          fontSize:
+                                              Get.locale?.languageCode == "ar"
+                                                  ? 10
+                                                  : 12,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                    textScaleFactor: 1,
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      CustomImage(
+                                        imagePath: Dir.getIconPath("star-full"),
+                                        height: size.height(mobile: 9),
+                                      ),
+                                      SizedBox(width: size.width(mobile: 3)),
+                                      Text(
+                                        product.averageRate.toInt().toString(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall!
+                                            .copyWith(
+                                                fontSize:
+                                                    Get.locale?.languageCode ==
+                                                            "ar"
+                                                        ? 6
+                                                        : 8),
+                                      )
+                                    ],
                                   )
                                 ],
-                              )
-                            ],
+                              ),
+                            ),
                           ),
                       ],
                     ),

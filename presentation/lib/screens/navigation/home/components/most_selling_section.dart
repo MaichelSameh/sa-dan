@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../../config/config.dart';
 import '../../../../controllers/home_controller.dart';
 import '../../../../widgets/widgets.dart';
+import '../../../product_details_screen.dart';
 
 class MostSellingSection extends StatefulWidget {
   const MostSellingSection({super.key});
@@ -30,7 +31,7 @@ class _MostSellingSectionState extends State<MostSellingSection> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = Size(context);
+    Size size = Size(context: context);
     return !isLoaded
         ? const Preloader()
         : Get.find<HomeController>().mostSellingProducts.isEmpty
@@ -85,57 +86,76 @@ class _MostSellingSectionState extends State<MostSellingSection> {
                             in Get.find<HomeController>().mostSellingProducts)
                           LayoutBuilder(builder: (BuildContext context,
                               BoxConstraints constraints) {
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(
-                                      size.width(mobile: 20)),
-                                  child: CustomImage(
-                                    imagePath: product.mainMediaUrl,
-                                    width: constraints.maxWidth,
-                                    height: constraints.maxHeight -
-                                        constraints.maxWidth * (35 / 100),
-                                  ),
-                                ),
-                                SizedBox(height: size.height(mobile: 3)),
-                                Text(
-                                  product.name,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall!
-                                      .copyWith(
-                                        fontSize:
-                                            Get.locale?.languageCode == "ar"
-                                                ? 10
-                                                : 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                  textScaleFactor: 1,
-                                ),
-                                Row(
+                            Size size = Size(
+                              context: context,
+                              constrain: constraints,
+                              customModelHeight: 133,
+                              customModelWidth: 160,
+                            );
+                            return GestureDetector(
+                              onTap: () {
+                                Get.toNamed(
+                                  ProductDetailsScreen.route_name,
+                                  arguments: product,
+                                );
+                              },
+                              child: Container(
+                                color: Colors.transparent,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
-                                    CustomImage(
-                                      imagePath: Dir.getIconPath("star-full"),
-                                      height: size.height(mobile: 9),
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(
+                                          size.width(mobile: 20)),
+                                      child: CustomImage(
+                                        imagePath: product.mainMediaUrl,
+                                        width: constraints.maxWidth,
+                                        height: size.height(mobile: 100),
+                                      ),
                                     ),
-                                    SizedBox(width: size.width(mobile: 3)),
+                                    SizedBox(height: size.height(mobile: 3)),
                                     Text(
-                                      product.averageRate.toInt().toString(),
+                                      product.name,
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodySmall!
                                           .copyWith(
-                                              fontSize:
-                                                  Get.locale?.languageCode ==
+                                            fontSize:
+                                                Get.locale?.languageCode == "ar"
+                                                    ? 10
+                                                    : 12,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                      textScaleFactor: 1,
+                                    ),
+                                    Row(
+                                      children: <Widget>[
+                                        CustomImage(
+                                          imagePath:
+                                              Dir.getIconPath("star-full"),
+                                          height: size.height(mobile: 9),
+                                        ),
+                                        SizedBox(width: size.width(mobile: 3)),
+                                        Text(
+                                          product.averageRate
+                                              .toInt()
+                                              .toString(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodySmall!
+                                              .copyWith(
+                                                  fontSize: Get.locale
+                                                              ?.languageCode ==
                                                           "ar"
                                                       ? 6
                                                       : 8),
+                                        )
+                                      ],
                                     )
                                   ],
-                                )
-                              ],
+                                ),
+                              ),
                             );
                           })
                       ],

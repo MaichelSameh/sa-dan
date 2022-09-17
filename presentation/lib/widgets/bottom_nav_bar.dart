@@ -15,7 +15,7 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = Size(context);
+    Size size = Size(context: context);
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
@@ -23,12 +23,13 @@ class BottomNavBar extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(
-                top: size.height(mobile: 35),
+                top: size.width(mobile: 35),
                 bottom: size.bottomPadding,
               ),
               child: Container(
-                height: size.height(mobile: 77),
                 width: double.infinity,
+                padding:
+                    EdgeInsets.symmetric(vertical: size.height(mobile: 16)),
                 decoration: BoxDecoration(
                   color: Theme.of(context).scaffoldBackgroundColor,
                   borderRadius: BorderRadius.only(
@@ -126,7 +127,6 @@ class BottomNavBar extends StatelessWidget {
         },
         child: Container(
           width: double.infinity,
-          height: double.infinity,
           color: Colors.transparent,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

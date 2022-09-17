@@ -33,7 +33,7 @@ class _BannersSectionState extends State<BannersSection> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = Size(context);
+    Size size = Size(context: context);
     return !isLoaded
         ? const Preloader()
         : Stack(

@@ -105,5 +105,12 @@
     "twitter": "Twitter",
     "instagram": "Instagram",
     "youtube": "YouTube",
-    "edit-photo": "Edit photo"
+    "edit-photo": "Edit photo",
+    "star-rating-count": "@count star rating",
+    "per-portion": "Per portion",
+    "description": "Description",
+    "customize-order": "Customize your order",
+    "number-of-portion": "Number of portion",
+    "total-price": "Total price",
+    "order-now": "Order now"
 }

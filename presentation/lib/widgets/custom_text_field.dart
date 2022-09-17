@@ -75,7 +75,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = Size(context);
+    Size size = Size(context: context);
     return SizedBox(
       width: widget.width ?? MediaQuery.of(context).size.width,
       child: Card(

@@ -46,8 +46,9 @@ class ProductInfo {
     _categoryId = data["categorization_id"];
     _createdAt = DateTime.parse(data["created_at"]);
     _creatorId = data["creator_id"];
-    _classification = (data["product_classifications"] as List<dynamic>)
-        .listClassifications();
+    _classification =
+        ((data["product_classifications"] as List<dynamic>?) ?? <dynamic>[])
+            .listClassifications();
     _description = data["overview_by_lang"];
     _id = data["id"];
     _mainMediaUrl = data["main_media_url"];

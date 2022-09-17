@@ -5,6 +5,7 @@ enum ScreenSize { pc, tablet, mobile }
 class Size {
   double? _screenHeight;
   double? _screenWidth;
+
   ScreenSize get screenSize {
     return MediaQuery.of(_context).size.width < 800
         ? ScreenSize.mobile
@@ -13,7 +14,13 @@ class Size {
             : ScreenSize.pc;
   }
 
+  static double? _customModelHeight;
+  static double? _customModelWidth;
+
   double get modelHeight {
+    if (_customModelHeight != null) {
+      return _customModelHeight!;
+    }
     switch (screenSize) {
       case ScreenSize.pc:
         return 1200;
@@ -25,6 +32,9 @@ class Size {
   }
 
   double get modelWidth {
+    if (_customModelWidth != null) {
+      return _customModelWidth!;
+    }
     switch (screenSize) {
       case ScreenSize.pc:
         return 1900;
@@ -35,27 +45,27 @@ class Size {
     }
   }
 
-  final BuildContext _context;
-  final BoxConstraints _constrain;
-  Size(
-    this._context, [
-    this._constrain = const BoxConstraints(maxHeight: 1, maxWidth: 1),
-  ]);
+  late final BuildContext _context;
+  late final BoxConstraints? _constrain;
 
-  double get constrainMaxHeight {
-    return _constrain.maxHeight == 1 ? screenHeight() : _constrain.maxHeight;
+  Size({
+    required BuildContext context,
+    BoxConstraints? constrain,
+    double? customModelHeight,
+    double? customModelWidth,
+  }) {
+    _constrain = constrain;
+    _context = context;
+    _customModelHeight = customModelHeight;
+    _customModelWidth = customModelWidth;
   }
 
-  double get constrainMaxWidth {
-    return _constrain.maxWidth == 1 ? screenWidth() : _constrain.maxWidth;
-  }
-
-  double screenHeight() {
+  double get screenHeight {
     _screenHeight ??= MediaQuery.of(_context).size.height;
     return _screenHeight ?? 1;
   }
 
-  double screenWidth() {
+  double get screenWidth {
     _screenWidth ??= MediaQuery.of(_context).size.width;
     return _screenWidth ?? 1;
   }
@@ -69,7 +79,6 @@ class Size {
     double? mobile,
     double? tablet,
     double? pc,
-    bool getFromScreenHeight = true,
   }) {
     if (mobile == null && tablet == null && pc == null) {
       throw "you must assign at least one of the screen sizes to use this function";
@@ -86,7 +95,7 @@ class Size {
         number = mobile ?? tablet ?? pc ?? 0;
         break;
     }
-    double height = getFromScreenHeight ? screenHeight() : constrainMaxHeight;
+    double height = _constrain?.maxHeight ?? screenHeight;
     double result = height * (number / modelHeight);
     return result;
   }
@@ -95,7 +104,6 @@ class Size {
     double? mobile,
     double? tablet,
     double? pc,
-    bool getFromScreenHeight = true,
   }) {
     if (mobile == null && tablet == null && pc == null) {
       throw "you must assign at least one of the screen sizes to use this function";
@@ -112,7 +120,7 @@ class Size {
         number = mobile ?? tablet ?? pc ?? 0;
         break;
     }
-    double width = getFromScreenHeight ? screenWidth() : constrainMaxWidth;
-    return width * (number / modelWidth);
+    double width = _constrain?.maxWidth ?? screenWidth;
+    return (width * (number / modelWidth)).abs();
   }
 }

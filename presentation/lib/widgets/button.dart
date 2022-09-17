@@ -21,7 +21,7 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = Size(context);
+    Size size = Size(context: context);
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();

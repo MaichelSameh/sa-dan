@@ -12,7 +12,7 @@ class DeleteAccountDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = Size(context);
+    Size size = Size(context: context);
     return Center(
       child: Container(
         width: size.width(mobile: 398),

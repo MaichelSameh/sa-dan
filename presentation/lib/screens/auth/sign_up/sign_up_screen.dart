@@ -21,7 +21,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   UserType selectedForm = UserType.customer;
   @override
   Widget build(BuildContext context) {
-    Size size = Size(context);
+    Size size = Size(context: context);
     return Scaffold(
       body: Column(
         children: <Widget>[

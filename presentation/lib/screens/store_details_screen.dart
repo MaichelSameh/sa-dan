@@ -9,6 +9,7 @@ import '../config/config.dart';
 import '../controllers/user_controller.dart';
 import '../widgets/widgets.dart';
 import 'menu_screen.dart';
+import 'product_details_screen.dart';
 
 class StoreDetailsScreen extends StatefulWidget {
   // ignore: constant_identifier_names
@@ -75,7 +76,7 @@ class _StoreDetailsScreenState extends State<StoreDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = Size(context);
+    Size size = Size(context: context);
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -154,6 +155,123 @@ class _StoreDetailsScreenState extends State<StoreDetailsScreen> {
                               imagePath: Dir.getIconPath("notification")),
                         ),
                       ),
+                    ],
+                  ),
+                  GridView(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    padding: EdgeInsets.zero,
+                    gridDelegate:
+                        const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 375,
+                      childAspectRatio: 375 / 211,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                    ),
+                    children: <Widget>[
+                      for (ProductInfo product in products)
+                        LayoutBuilder(
+                          builder: (BuildContext context,
+                              BoxConstraints constraints) {
+                            Size size = Size(
+                              context: context,
+                              constrain: constraints,
+                              customModelHeight: 211,
+                              customModelWidth: 375,
+                            );
+                            return GestureDetector(
+                              onTap: () {
+                                Get.toNamed(
+                                  ProductDetailsScreen.route_name,
+                                  arguments: product,
+                                );
+                              },
+                              child: Container(
+                                color: Colors.transparent,
+                                child: Column(
+                                  children: <Widget>[
+                                    CustomImage(
+                                      imagePath: product.mainMediaUrl,
+                                      height: size.height(mobile: 163),
+                                      width: constraints.maxWidth,
+                                    ),
+                                    SizedBox(height: size.height(mobile: 10)),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: size.width(mobile: 27)),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: <Widget>[
+                                              SizedBox(
+                                                width: size.width(mobile: 250),
+                                                child: Text(
+                                                  product.name,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall!
+                                                      .copyWith(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                  textScaleFactor: 1,
+                                                  softWrap: true,
+                                                  maxLines: 1,
+                                                ),
+                                              ),
+                                              Row(
+                                                children: <Widget>[
+                                                  CustomImage(
+                                                    imagePath: Dir.getIconPath(
+                                                        "star-full"),
+                                                    height:
+                                                        size.height(mobile: 9),
+                                                  ),
+                                                  SizedBox(
+                                                      width: size.width(
+                                                          mobile: 5)),
+                                                  Text(
+                                                    product.name,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodySmall!
+                                                        .copyWith(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                    textScaleFactor: 1,
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          if (product.classification.isNotEmpty)
+                                            Text(
+                                              product.classification.first.price
+                                                  .getPrice,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium!
+                                                  .copyWith(
+                                                    fontWeight: FontWeight.bold,
+                                                    color:
+                                                        Palette.primary_color,
+                                                  ),
+                                            ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                     ],
                   ),
                 ],

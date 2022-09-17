@@ -1,9 +1,10 @@
+import 'package:data/models/filter_info.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../config/config.dart';
 import '../../../widgets/widgets.dart';
-import '../../menu_screen.dart';
+import '../../search_products_screen.dart';
 import 'components/banners_section.dart';
 import 'components/categories_section.dart';
 import 'components/most_selling_section.dart';
@@ -27,38 +28,7 @@ class _HomePageState extends State<HomePage> {
         padding: EdgeInsets.zero,
         children: <Widget>[
           SizedBox(height: size.height(mobile: 15) + size.topPadding),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              GestureDetector(
-                onTap: () {
-                  Get.to(
-                    const MenuScreen(),
-                    transition: Directionality.of(context) == TextDirection.ltr
-                        ? Transition.leftToRight
-                        : Transition.rightToLeft,
-                    opaque: false,
-                  );
-                },
-                child: Container(
-                  color: Colors.transparent,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: size.width(mobile: 30),
-                    vertical: size.height(mobile: 15),
-                  ),
-                  child: CustomImage(imagePath: Dir.getIconPath("menu")),
-                ),
-              ),
-              Container(
-                color: Colors.transparent,
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.width(mobile: 30),
-                  vertical: size.height(mobile: 15),
-                ),
-                child: CustomImage(imagePath: Dir.getIconPath("notification")),
-              ),
-            ],
-          ),
+          const CustomAppBar(),
           SizedBox(height: size.height(mobile: 13)),
           const BannersSection(),
           SizedBox(height: size.height(mobile: 13)),
@@ -84,6 +54,13 @@ class _HomePageState extends State<HomePage> {
                 padding: EdgeInsets.symmetric(vertical: size.height(mobile: 6)),
                 child: CustomImage(imagePath: Dir.getIconPath("search")),
               ),
+              onSubmit: (String text) {
+                Get.toNamed(
+                  SearchProductsScreen.route_name,
+                  arguments: FilterInfo(keyword: text),
+                );
+                searchController.clear();
+              },
             ),
           ),
           SizedBox(height: size.height(mobile: 13)),

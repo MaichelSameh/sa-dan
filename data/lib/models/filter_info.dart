@@ -40,4 +40,13 @@ class FilterInfo {
       keyword: keyword ?? this.keyword,
     );
   }
+
+  FilterInfo copyFrom({FilterInfo? filter}) {
+    return FilterInfo(
+      sorting: filter?.sorting,
+      categorizationId: filter?.categorizationId,
+      storeId: filter?.storeId,
+      keyword: filter?.keyword,
+    );
+  }
 }

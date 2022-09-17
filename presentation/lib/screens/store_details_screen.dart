@@ -7,9 +7,8 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../config/config.dart';
 import '../controllers/user_controller.dart';
+import '../widgets/product_card.dart';
 import '../widgets/widgets.dart';
-import 'menu_screen.dart';
-import 'product_details_screen.dart';
 
 class StoreDetailsScreen extends StatefulWidget {
   // ignore: constant_identifier_names
@@ -81,6 +80,7 @@ class _StoreDetailsScreenState extends State<StoreDetailsScreen> {
       body: Column(
         children: <Widget>[
           SizedBox(height: size.topPadding),
+          CustomAppBar(title: store.name),
           Expanded(
             child: SmartRefresher(
               onRefresh: refresh,
@@ -89,191 +89,17 @@ class _StoreDetailsScreenState extends State<StoreDetailsScreen> {
               footer: const CustomRefreshFooter(),
               enablePullUp: true,
               controller: refreshController,
-              child: ListView(
+              child: GridView(
+                padding: EdgeInsets.zero,
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 500,
+                  childAspectRatio: 500 / 211,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                ),
                 children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.to(
-                              const MenuScreen(),
-                              transition: Directionality.of(context) ==
-                                      TextDirection.ltr
-                                  ? Transition.leftToRight
-                                  : Transition.rightToLeft,
-                              opaque: false,
-                            );
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            padding: EdgeInsets.symmetric(
-                              horizontal: size.width(mobile: 25),
-                              vertical: size.height(mobile: 15),
-                            ),
-                            color: Colors.transparent,
-                            alignment: AlignmentDirectional.centerStart,
-                            child:
-                                CustomImage(imagePath: Dir.getIconPath("menu")),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: size.width(mobile: 200),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(
-                                  size.height(mobile: 40)),
-                              child: CustomImage(
-                                imagePath: store.logoUrl,
-                                height: size.height(mobile: 40),
-                                width: size.height(mobile: 40),
-                              ),
-                            ),
-                            SizedBox(width: size.width(mobile: 5)),
-                            Text(
-                              store.name,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                              textScaleFactor: 1,
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: double.infinity,
-                          padding: EdgeInsets.symmetric(
-                            horizontal: size.width(mobile: 25),
-                            vertical: size.height(mobile: 15),
-                          ),
-                          color: Colors.transparent,
-                          alignment: AlignmentDirectional.centerEnd,
-                          child: CustomImage(
-                              imagePath: Dir.getIconPath("notification")),
-                        ),
-                      ),
-                    ],
-                  ),
-                  GridView(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.zero,
-                    gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 375,
-                      childAspectRatio: 375 / 211,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                    ),
-                    children: <Widget>[
-                      for (ProductInfo product in products)
-                        LayoutBuilder(
-                          builder: (BuildContext context,
-                              BoxConstraints constraints) {
-                            Size size = Size(
-                              context: context,
-                              constrain: constraints,
-                              customModelHeight: 211,
-                              customModelWidth: 375,
-                            );
-                            return GestureDetector(
-                              onTap: () {
-                                Get.toNamed(
-                                  ProductDetailsScreen.route_name,
-                                  arguments: product,
-                                );
-                              },
-                              child: Container(
-                                color: Colors.transparent,
-                                child: Column(
-                                  children: <Widget>[
-                                    CustomImage(
-                                      imagePath: product.mainMediaUrl,
-                                      height: size.height(mobile: 163),
-                                      width: constraints.maxWidth,
-                                    ),
-                                    SizedBox(height: size.height(mobile: 10)),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: size.width(mobile: 27)),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: <Widget>[
-                                              SizedBox(
-                                                width: size.width(mobile: 250),
-                                                child: Text(
-                                                  product.name,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodySmall!
-                                                      .copyWith(
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                  textScaleFactor: 1,
-                                                  softWrap: true,
-                                                  maxLines: 1,
-                                                ),
-                                              ),
-                                              Row(
-                                                children: <Widget>[
-                                                  CustomImage(
-                                                    imagePath: Dir.getIconPath(
-                                                        "star-full"),
-                                                    height:
-                                                        size.height(mobile: 9),
-                                                  ),
-                                                  SizedBox(
-                                                      width: size.width(
-                                                          mobile: 5)),
-                                                  Text(
-                                                    product.name,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodySmall!
-                                                        .copyWith(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                    textScaleFactor: 1,
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                          if (product.classification.isNotEmpty)
-                                            Text(
-                                              product.classification.first.price
-                                                  .getPrice,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyMedium!
-                                                  .copyWith(
-                                                    fontWeight: FontWeight.bold,
-                                                    color:
-                                                        Palette.primary_color,
-                                                  ),
-                                            ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                    ],
-                  ),
+                  for (ProductInfo product in products)
+                    ProductCard(product: product),
                 ],
               ),
             ),

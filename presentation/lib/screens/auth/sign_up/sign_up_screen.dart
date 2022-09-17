@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../config/config.dart';
 import '../../../widgets/widgets.dart';
+import '../../navigation/navigation_screen.dart';
 import '../login_screen.dart';
 import 'components/customer_form.dart';
 import 'components/driver_form.dart';
@@ -25,7 +26,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          SizedBox(height: size.height(mobile: 10) + size.topPadding),
+          SizedBox(height: size.topPadding),
+          GestureDetector(
+            onTap: () {
+              Get.offAllNamed(NavigationScreen.route_name);
+            },
+            child: Align(
+              alignment: AlignmentDirectional.centerEnd,
+              child: Container(
+                color: Colors.transparent,
+                padding: EdgeInsets.symmetric(
+                  vertical: size.height(mobile: 10),
+                  horizontal: size.width(mobile: 25),
+                ),
+                child: Text(
+                  "skip".tr,
+                  style: Theme.of(context).textTheme.bodySmall,
+                  textScaleFactor: 1,
+                ),
+              ),
+            ),
+          ),
           CustomImage(
             imagePath: Dir.getLogoPath("logo"),
             width: size.width(mobile: 52),

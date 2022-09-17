@@ -112,5 +112,18 @@
     "customize-order": "Customize your order",
     "number-of-portion": "Number of portion",
     "total-price": "Total price",
-    "order-now": "Order now"
+    "order-now": "Order now",
+    "shipping-locations": "Shipping locations",
+    "add-new-location": "Add new location",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save-location": "Save location",
+    "street-name": "Street name",
+    "location-added": "Location added successfully",
+    "select-shipping-location": "Select shipping location",
+    "use-as-shipping": "Use as shipping",
+    "send": "Send",
+    "reset": "Reset",
+    "apply": "Apply",
+    "no-products": "No products found"
 }

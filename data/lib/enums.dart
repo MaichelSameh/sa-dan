@@ -2,15 +2,6 @@ enum SocialAuthMethod { facebook, apple, google }
 
 enum UserType { customer, company, admin, driver }
 
-enum SexType { men, women, unisex, none }
-
-enum ProductVariationType {
-  color,
-  classification,
-  colorAndClassification,
-  none
-}
-
 enum ProductSorting { mostPopular, mostRecent }
 
 enum Stock { inStock, outOffStock }

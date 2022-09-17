@@ -9,6 +9,7 @@ class Button extends StatelessWidget {
   final double? height;
   final Widget? child;
   final double? radius;
+  final EdgeInsets? padding;
   const Button({
     Key? key,
     this.color,
@@ -17,6 +18,7 @@ class Button extends StatelessWidget {
     this.height,
     this.child,
     this.radius,
+    this.padding,
   }) : super(key: key);
 
   @override
@@ -27,16 +29,25 @@ class Button extends StatelessWidget {
         FocusScope.of(context).unfocus();
         onTap?.call();
       },
-      child: Container(
-        height: height ?? size.height(mobile: 55),
-        width: width ?? double.infinity,
-        decoration: BoxDecoration(
-          borderRadius:
-              BorderRadius.circular(radius ?? size.height(mobile: 50)),
-          color: color ?? Palette.primary_color,
-        ),
-        alignment: Alignment.center,
-        child: child,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Center(
+            child: Container(
+              height:
+                  height ?? (padding == null ? size.height(mobile: 55) : null),
+              width: width ?? (padding == null ? double.infinity : null),
+              padding: padding,
+              decoration: BoxDecoration(
+                borderRadius:
+                    BorderRadius.circular(radius ?? size.height(mobile: 50)),
+                color: color ?? Palette.primary_color,
+              ),
+              alignment: Alignment.center,
+              child: child,
+            ),
+          ),
+        ],
       ),
     );
   }

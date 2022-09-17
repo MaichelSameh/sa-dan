@@ -1,9 +1,11 @@
 import 'dart:ui';
 
+import 'package:domain/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../config/config.dart';
+import '../controllers/home_controller.dart';
 import '../controllers/user_controller.dart';
 import '../widgets/widgets.dart';
 import 'screens.dart';
@@ -104,27 +106,45 @@ class MenuScreen extends StatelessWidget {
                               );
                             },
                           ),
-                          buildItem(
-                            size: size,
-                            context: context,
-                            label: "my-orders".tr,
-                          ),
-                          buildItem(
-                            size: size,
-                            context: context,
-                            label: "profile-setting".tr,
-                            onTap: () {
-                              Get.toNamed(
-                                NavigationScreen.route_name,
-                                arguments: 3,
-                              );
-                            },
-                          ),
-                          buildItem(
-                            size: size,
-                            context: context,
-                            label: "notifications".tr,
-                          ),
+                          if (Get.find<UserController>().token != null)
+                            buildItem(
+                              size: size,
+                              context: context,
+                              label: "my-orders".tr,
+                              onTap: () {
+                                Get.toNamed(OrdersScreen.route_name);
+                              },
+                            ),
+                          if (Get.find<UserController>().token != null)
+                            buildItem(
+                              size: size,
+                              context: context,
+                              label: "profile-setting".tr,
+                              onTap: () {
+                                Get.toNamed(
+                                  NavigationScreen.route_name,
+                                  arguments: 3,
+                                );
+                              },
+                            ),
+                          if (Get.find<UserController>().token != null)
+                            buildItem(
+                              size: size,
+                              context: context,
+                              label: "notifications".tr,
+                              onTap: () {
+                                Get.toNamed(NotificationsScreen.route_name);
+                              },
+                            ),
+                          if (Get.find<UserController>().token != null)
+                            buildItem(
+                              size: size,
+                              context: context,
+                              label: "location".tr,
+                              onTap: () {
+                                Get.toNamed(AddressesScreen.route_name);
+                              },
+                            ),
                           buildItem(
                             size: size,
                             context: context,
@@ -149,28 +169,53 @@ class MenuScreen extends StatelessWidget {
                               Get.toNamed(TermsConditionsScreen.route_name);
                             },
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              //TODO add the logout function
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              color: Colors.transparent,
-                              padding: EdgeInsets.symmetric(
-                                  vertical: size.height(mobile: 20)),
-                              child: Text(
-                                "sign-out".tr,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall!
-                                    .copyWith(
-                                      color: Palette.primary_color,
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                textScaleFactor: 1,
+                          if (Get.find<UserController>().token != null)
+                            GestureDetector(
+                              onTap: () async {
+                                Get.dialog(const Preloader(),
+                                    barrierDismissible: false);
+                                bool _ = await AuthServices()
+                                    .logout(
+                                        token: Get.find<UserController>()
+                                            .token!
+                                            .token
+                                            .combinedToken)
+                                    .catchError((dynamic error) {
+                                  Get.back();
+                                  errorHandler(error);
+                                });
+                                Get.back();
+                                Get.find<UserController>().setToken(null);
+                                await Get.delete<HomeController>();
+                                Get.offAllNamed(SplashScreen.route_name);
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                color: Colors.transparent,
+                                padding: EdgeInsets.symmetric(
+                                    vertical: size.height(mobile: 20)),
+                                child: Text(
+                                  "sign-out".tr,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall!
+                                      .copyWith(
+                                        color: Palette.primary_color,
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                  textScaleFactor: 1,
+                                ),
                               ),
+                            )
+                          else
+                            buildItem(
+                              size: size,
+                              context: context,
+                              label: "sign-in".tr,
+                              onTap: () {
+                                Get.toNamed(LoginScreen.route_name);
+                              },
                             ),
-                          )
                         ],
                       ),
                     ),

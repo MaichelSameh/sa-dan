@@ -111,5 +111,18 @@
     "customize-order": "تخصيص طلبك",
     "number-of-portion": "عدد القطع",
     "total-price": "السعر الكلي",
-    "order-now": "اطلب الان"
+    "order-now": "اطلب الان",
+    "shipping-locations": "أماكن الشحن",
+    "add-new-location": "أضف موقعًا جديدًا",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "save-location": "حفظ الموقع",
+    "street-name": "اسم الشارع",
+    "location-added": "تمت إضافة الموقع بنجاح",
+    "select-shipping-location": "اختر مكان الشحن",
+    "use-as-shipping": "استخدم كموقع شحن",
+    "send": "أرسال",
+    "reset": "أعاده تعيين",
+    "apply": "تطبيق",
+    "no-products": "لا توجد منتجات"
 }

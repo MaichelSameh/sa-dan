@@ -1,3 +1,4 @@
+import 'package:data/enums.dart';
 import 'package:data/models/product_info.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,6 +7,7 @@ import '../../../../config/config.dart';
 import '../../../../controllers/home_controller.dart';
 import '../../../../widgets/widgets.dart';
 import '../../../product_details_screen.dart';
+import '../../../products_screen.dart';
 
 class TopRatedSection extends StatefulWidget {
   const TopRatedSection({super.key});
@@ -54,7 +56,10 @@ class _TopRatedSectionState extends State<TopRatedSection> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            //TODO navigate to view all screen
+                            Get.toNamed(
+                              ProductsScreen.route_name,
+                              arguments: ProductSorting.mostPopular,
+                            );
                           },
                           child: Text(
                             "view-all".tr,

@@ -12,8 +12,8 @@ import 'package:get/get.dart';
 
 import '../config/config.dart';
 import '../controllers/controllers.dart';
-import '../widgets/dialogs/dialogs.dart';
 import '../widgets/widgets.dart';
+import 'address/addresses_screen.dart';
 import 'navigation/navigation_screen.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
@@ -256,9 +256,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       ),
                                       SizedBox(height: size.height(mobile: 8)),
                                       CustomDropdownButton<String>(
-                                        value: selectedClassificationId,
                                         width: double.infinity,
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: size.width(mobile: 10),
+                                          vertical: size.height(mobile: 10),
+                                        ),
+                                        borderRadius: 0,
                                         hide: true,
+                                        value: selectedClassificationId,
                                         items: <
                                             CustomDropdownButtonItem<String>>[
                                           for (ClassificationInfo classification
@@ -282,6 +287,71 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                           });
                                         },
                                       ),
+                                      SizedBox(height: size.height(mobile: 8)),
+                                      StatefulBuilder(builder:
+                                          (BuildContext context,
+                                              void Function(void Function())
+                                                  setState) {
+                                        return GestureDetector(
+                                          onTap: () async {
+                                            dynamic res = await Get.toNamed(
+                                              AddressesScreen.route_name,
+                                              arguments: true,
+                                            );
+                                            if (res is AddressInfo?) {
+                                              selectedAddress = res;
+                                              setState(() {});
+                                            }
+                                          },
+                                          child: Container(
+                                            width: double.infinity,
+                                            padding: EdgeInsets.symmetric(
+                                              horizontal:
+                                                  size.width(mobile: 10),
+                                              vertical: size.height(mobile: 10),
+                                            ),
+                                            decoration: const BoxDecoration(
+                                              color: Color.fromRGBO(
+                                                  247, 248, 249, 1),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: <Widget>[
+                                                SizedBox(
+                                                  width:
+                                                      size.width(mobile: 280),
+                                                  child: Text(
+                                                    selectedAddress?.address ??
+                                                        "select-shipping-location"
+                                                            .tr,
+                                                    style:
+                                                        selectedAddress == null
+                                                            ? Theme.of(context)
+                                                                .textTheme
+                                                                .labelSmall
+                                                            : Theme.of(context)
+                                                                .textTheme
+                                                                .bodySmall,
+                                                    textScaleFactor: 1,
+                                                    softWrap: true,
+                                                    maxLines: 1,
+                                                  ),
+                                                ),
+                                                CustomImage(
+                                                  imagePath:
+                                                      Dir.getIconPath("next"),
+                                                  color: Theme.of(context)
+                                                      .textTheme
+                                                      .bodySmall!
+                                                      .color,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      }),
                                       SizedBox(height: size.height(mobile: 20)),
                                       StatefulBuilder(
                                         builder: (BuildContext context,
@@ -297,95 +367,112 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                 textScaleFactor: 1,
                                               ),
                                               const Spacer(),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  if (quantity <= 1) {
-                                                    return;
-                                                  }
-                                                  quantity--;
-                                                  setState(() {});
-                                                },
-                                                child: Opacity(
-                                                  opacity:
-                                                      quantity <= 1 ? 0.7 : 1,
-                                                  child: Container(
-                                                    width:
-                                                        size.width(mobile: 33),
-                                                    height:
-                                                        size.height(mobile: 20),
-                                                    padding:
-                                                        EdgeInsets.symmetric(
+                                              Container(
+                                                padding: EdgeInsets.symmetric(
+                                                  vertical:
+                                                      size.height(mobile: 5),
+                                                  horizontal:
+                                                      size.width(mobile: 12),
+                                                ),
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      color: Palette
+                                                          .primary_color),
+                                                  borderRadius:
+                                                      BorderRadius.circular(size
+                                                          .height(mobile: 20)),
+                                                ),
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    GestureDetector(
+                                                      onTap: () {
+                                                        if (quantity <= 1) {
+                                                          return;
+                                                        }
+                                                        quantity--;
+                                                        setState(() {});
+                                                      },
+                                                      child: Opacity(
+                                                        opacity: quantity <= 1
+                                                            ? 0.7
+                                                            : 1,
+                                                        child: Container(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                            vertical:
+                                                                size.height(
+                                                                    mobile: 10),
                                                             horizontal:
                                                                 size.width(
-                                                                    mobile:
-                                                                        12)),
-                                                    decoration: BoxDecoration(
-                                                      color: Palette
-                                                          .secondary_color,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              size.height(
-                                                                  mobile: 20)),
+                                                                    mobile: 12),
+                                                          ),
+                                                          color: Colors
+                                                              .transparent,
+                                                          child: CustomImage(
+                                                            imagePath:
+                                                                Dir.getIconPath(
+                                                                    "minus"),
+                                                            color: Palette
+                                                                .secondary_color,
+                                                            width: size.width(
+                                                                mobile: 10),
+                                                          ),
+                                                        ),
+                                                      ),
                                                     ),
-                                                    child: CustomImage(
-                                                        imagePath:
-                                                            Dir.getIconPath(
-                                                                "minus")),
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                  width: size.width(mobile: 5)),
-                                              Container(
-                                                height: size.height(mobile: 20),
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal:
-                                                        size.width(mobile: 13)),
-                                                decoration: BoxDecoration(
-                                                    border: Border.all(
-                                                        color: Palette
-                                                            .primary_color),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            size.height(
-                                                                mobile: 20))),
-                                                child: Text(
-                                                  quantity.toString(),
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodySmall!
-                                                      .copyWith(
+                                                    SizedBox(
+                                                        width: size.width(
+                                                            mobile: 5)),
+                                                    Container(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                        horizontal: size.width(
+                                                            mobile: 12),
+                                                      ),
+                                                      alignment: Alignment
+                                                          .bottomCenter,
+                                                      child: Text(
+                                                        quantity.toString(),
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .bodySmall!
+                                                            .copyWith(
+                                                                color: Palette
+                                                                    .secondary_color),
+                                                        textScaleFactor: 1,
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                        width: size.width(
+                                                            mobile: 5)),
+                                                    GestureDetector(
+                                                      onTap: () {
+                                                        quantity++;
+                                                        setState(() {});
+                                                      },
+                                                      child: Container(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                          vertical: size.height(
+                                                              mobile: 5),
+                                                          horizontal:
+                                                              size.width(
+                                                                  mobile: 12),
+                                                        ),
+                                                        color:
+                                                            Colors.transparent,
+                                                        child: CustomImage(
+                                                          imagePath:
+                                                              Dir.getIconPath(
+                                                                  "add"),
                                                           color: Palette
-                                                              .secondary_color),
-                                                  textScaleFactor: 1,
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                  width: size.width(mobile: 5)),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  quantity++;
-                                                  setState(() {});
-                                                },
-                                                child: Container(
-                                                  width: size.width(mobile: 33),
-                                                  height:
-                                                      size.height(mobile: 20),
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: size.width(
-                                                          mobile: 12)),
-                                                  decoration: BoxDecoration(
-                                                    color:
-                                                        Palette.secondary_color,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            size.height(
-                                                                mobile: 20)),
-                                                  ),
-                                                  child: CustomImage(
-                                                      imagePath:
-                                                          Dir.getIconPath(
-                                                              "minus")),
+                                                              .secondary_color,
+                                                          width: size.width(
+                                                              mobile: 10),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
                                             ],
@@ -434,58 +521,82 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                           ],
                                         ),
                                         alignment: Alignment.center,
-                                        child: Button(
-                                          onTap: () async {
-                                            if (Get.find<UserController>()
-                                                    .token ==
-                                                null) {
-                                              Get.dialog(const LoginDialog());
-                                              return;
-                                            }
-                                            if (selectedClassificationId ==
-                                                    null ||
-                                                selectedAddress == null) {
-                                              return;
-                                            }
-                                            Get.dialog(const Preloader());
-                                            OrderInfo _ =
-                                                await OrderServices().makeOrder(
-                                              token: Get.find<UserController>()
-                                                  .token!
-                                                  .token
-                                                  .combinedToken,
-                                              addressId: selectedAddress!.id,
-                                              classificationId:
-                                                  selectedClassificationId!,
-                                              productId: product.id,
-                                              quantity: quantity,
-                                              paymentMethod: PaymentMethod.cash,
-                                            );
-                                            quantity = 1;
-                                            setState(() {});
-                                            Get.back();
-                                            successHandler(
-                                                "ordered-successfully".tr);
-                                          },
-                                          width: size.width(mobile: 150),
-                                          height: size.height(mobile: 35),
-                                          radius: size.height(mobile: 10),
-                                          child: Text(
-                                            "order-now".tr,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!
-                                                .copyWith(
-                                                    color: Theme.of(context)
-                                                        .scaffoldBackgroundColor),
-                                            textScaleFactor: 1,
-                                          ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            Button(
+                                              onTap: () async {
+                                                if (Get.find<UserController>()
+                                                        .token ==
+                                                    null) {
+                                                  Get.dialog(
+                                                      const LoginDialog());
+                                                  return;
+                                                }
+                                                if (selectedClassificationId ==
+                                                        null ||
+                                                    selectedAddress == null) {
+                                                  return;
+                                                }
+                                                Get.dialog(const Preloader());
+                                                OrderInfo _ =
+                                                    await OrderServices()
+                                                        .makeOrder(
+                                                  token:
+                                                      Get.find<UserController>()
+                                                          .token!
+                                                          .token
+                                                          .combinedToken,
+                                                  addressId:
+                                                      selectedAddress!.id,
+                                                  classificationId:
+                                                      selectedClassificationId!,
+                                                  productId: product.id,
+                                                  quantity: quantity,
+                                                  paymentMethod:
+                                                      PaymentMethod.cash,
+                                                )
+                                                        .catchError(
+                                                            (dynamic error) {
+                                                  Get.back();
+                                                  errorHandler(error);
+                                                });
+                                                quantity = 1;
+                                                setState(() {});
+                                                Get.back();
+                                                successHandler(
+                                                    "ordered-successfully".tr);
+                                              },
+                                              padding: EdgeInsets.symmetric(
+                                                horizontal:
+                                                    size.width(mobile: 35),
+                                                vertical:
+                                                    size.height(mobile: 8),
+                                              ),
+                                              radius: size.height(mobile: 10),
+                                              child: Text(
+                                                "order-now".tr,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium!
+                                                    .copyWith(
+                                                        color: Theme.of(context)
+                                                            .scaffoldBackgroundColor),
+                                                textScaleFactor: 1,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                                SizedBox(height: size.height(mobile: 120)),
+                                Opacity(
+                                  opacity: 0,
+                                  child: BottomNavBar(
+                                    onPageChanged: (_) {},
+                                  ),
+                                ),
                               ],
                             ),
                           ),

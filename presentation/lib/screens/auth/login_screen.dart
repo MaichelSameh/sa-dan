@@ -8,7 +8,7 @@ import '../../config/config.dart';
 import '../../controllers/user_controller.dart';
 import '../../widgets/widgets.dart';
 import '../navigation/navigation_screen.dart';
-import 'sign_up/sign_up_screen.dart';
+import 'auth.dart';
 
 class LoginScreen extends StatefulWidget {
   // ignore: constant_identifier_names
@@ -52,7 +52,27 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          SizedBox(height: size.height(mobile: 10) + size.topPadding),
+          SizedBox(height: size.topPadding),
+          GestureDetector(
+            onTap: () {
+              Get.offAllNamed(NavigationScreen.route_name);
+            },
+            child: Align(
+              alignment: AlignmentDirectional.centerEnd,
+              child: Container(
+                color: Colors.transparent,
+                padding: EdgeInsets.symmetric(
+                  vertical: size.height(mobile: 10),
+                  horizontal: size.width(mobile: 25),
+                ),
+                child: Text(
+                  "skip".tr,
+                  style: Theme.of(context).textTheme.bodySmall,
+                  textScaleFactor: 1,
+                ),
+              ),
+            ),
+          ),
           CustomImage(
             imagePath: Dir.getLogoPath("logo"),
             width: size.width(mobile: 52),
@@ -127,7 +147,28 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   onSubmit: (_) => login(),
                 ),
-                SizedBox(height: size.height(mobile: 50)),
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(ForgotPasswordScreen.route_name);
+                  },
+                  child: Align(
+                    alignment: AlignmentDirectional.centerEnd,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                          vertical: size.height(mobile: 12)),
+                      color: Colors.transparent,
+                      child: Text(
+                        "forgot-password?".tr,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall!
+                            .copyWith(color: Palette.secondary_color),
+                        textScaleFactor: 1,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: size.height(mobile: 40)),
                 Button(
                   onTap: login,
                   child: Text(

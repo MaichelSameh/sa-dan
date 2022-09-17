@@ -7,8 +7,8 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import '../config/config.dart';
 import '../controllers/user_controller.dart';
 import '../widgets/widgets.dart';
-import 'menu_screen.dart';
-import 'screens.dart';
+import 'search_products_screen.dart';
+import 'store_details_screen.dart';
 
 class CategorizationDetailsScreen extends StatefulWidget {
   // ignore: constant_identifier_names
@@ -94,57 +94,7 @@ class _CategorizationDetailsScreenState
               child: ListView(
                 padding: EdgeInsets.zero,
                 children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.to(
-                              const MenuScreen(),
-                              transition: Directionality.of(context) ==
-                                      TextDirection.ltr
-                                  ? Transition.leftToRight
-                                  : Transition.rightToLeft,
-                              opaque: false,
-                            );
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            padding: EdgeInsets.symmetric(
-                              horizontal: size.width(mobile: 25),
-                              vertical: size.height(mobile: 15),
-                            ),
-                            color: Colors.transparent,
-                            alignment: AlignmentDirectional.centerStart,
-                            child:
-                                CustomImage(imagePath: Dir.getIconPath("menu")),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: size.width(mobile: 200),
-                        child: Text(
-                          category.name,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                          textScaleFactor: 1,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      Expanded(
-                        child: Container(
-                          width: double.infinity,
-                          padding: EdgeInsets.symmetric(
-                            horizontal: size.width(mobile: 25),
-                            vertical: size.height(mobile: 15),
-                          ),
-                          color: Colors.transparent,
-                          alignment: AlignmentDirectional.centerEnd,
-                          child: CustomImage(
-                              imagePath: Dir.getIconPath("notification")),
-                        ),
-                      ),
-                    ],
-                  ),
+                  CustomAppBar(title: category.name),
                   Container(
                     width: double.infinity,
                     height: 1,
@@ -180,6 +130,13 @@ class _CategorizationDetailsScreenState
                         child:
                             CustomImage(imagePath: Dir.getIconPath("search")),
                       ),
+                      onSubmit: (String text) {
+                        Get.toNamed(
+                          SearchProductsScreen.route_name,
+                          arguments: FilterInfo(keyword: text),
+                        );
+                        searchController.clear();
+                      },
                     ),
                   ),
                   SizedBox(height: size.height(mobile: 20)),

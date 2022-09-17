@@ -1,13 +1,9 @@
 import '../enums.dart';
-import '../utils/numbers_util.dart';
 
 class AddressInfo {
-  late int? _blockNumber;
   late String _country;
   late String _city;
   late DateTime _createdAt;
-  late int? _flatNumber;
-  late int? _floorNumber;
   late String _id;
   late String _name;
   late String _ownerId;
@@ -17,12 +13,9 @@ class AddressInfo {
   late AddressType _type;
 
   AddressInfo({
-    int? blockNumber,
     required String country,
     required String city,
     required DateTime createdAt,
-    int? flatNumber,
-    int? floorNumber,
     required String id,
     required String name,
     required String ownerId,
@@ -31,12 +24,9 @@ class AddressInfo {
     required String streetName,
     required AddressType type,
   }) {
-    _blockNumber = blockNumber;
     _country = country;
     _city = city;
     _createdAt = createdAt;
-    _flatNumber = flatNumber;
-    _floorNumber = floorNumber;
     _id = id;
     _name = name;
     _ownerId = ownerId;
@@ -47,12 +37,9 @@ class AddressInfo {
   }
 
   AddressInfo.fromJson(Map<String, dynamic> data) {
-    _blockNumber = data["block_number"].toString().toInt();
     _country = data["country"];
     _city = data["city"];
     _createdAt = DateTime.parse(data["created_at"]);
-    _flatNumber = data["flat_number"].toString().toInt();
-    _floorNumber = data["floor_number"].toString().toInt();
     _id = data["address_id"] ?? data["id"];
     _name = data["name"];
     _ownerId = data["owner_id"];
@@ -65,9 +52,6 @@ class AddressInfo {
     );
   }
 
-  ///the address's block number
-  int? get blockNumber => _blockNumber;
-
   ///the address's country
   String get country => _country;
 
@@ -76,12 +60,6 @@ class AddressInfo {
 
   ///the date when the address is created
   DateTime get createdAt => _createdAt;
-
-  ///the address's flat number
-  int? get flatNumber => _flatNumber;
-
-  ///the address's floor number
-  int? get floorNumber => _floorNumber;
 
   ///the address's id
   String get id => _id;
@@ -104,8 +82,19 @@ class AddressInfo {
   ///the address's type
   AddressType get type => _type;
 
+  String get address {
+    String result = "";
+    if (city.isNotEmpty) {
+      result += "$city ";
+    }
+    if (country.isNotEmpty) {
+      result += "$country ";
+    }
+    return result;
+  }
+
   @override
   String toString() {
-    return 'AddressInfo(_blockNumber: $_blockNumber, _city: $_city, _createdAt: $_createdAt, _flatNumber: $_flatNumber, _floorNumber: $_floorNumber, _id: $_id, _name: $_name, _ownerId: $_ownerId, _phone: $_phone, _postalCode: $_postalCode, _streetName: $_streetName, _type: $_type)';
+    return 'AddressInfo(_country: $_country, _city: $_city, _createdAt: $_createdAt, _id: $_id, _name: $_name, _ownerId: $_ownerId, _phone: $_phone, _postalCode: $_postalCode, _streetName: $_streetName, _type: $_type)';
   }
 }

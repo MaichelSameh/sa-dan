@@ -46,10 +46,10 @@ class CustomDropdownButton<T> extends StatefulWidget {
   final CustomDropdownButtonAlign align;
 
   ///the button height
-  final double height;
+  final double? height;
 
   ///the button width without calculating the width of the icon
-  final double width;
+  final double? width;
 
   ///the animation curve
   final Curve curves;
@@ -84,8 +84,8 @@ class CustomDropdownButton<T> extends StatefulWidget {
     this.icon,
     this.maxHeight,
     this.align = CustomDropdownButtonAlign.bottom,
-    this.height = 60,
-    this.width = 120,
+    this.height,
+    this.width,
     this.curves = Curves.decelerate,
     this.padding = const EdgeInsets.symmetric(horizontal: 10),
     this.borderRadius = 10,
@@ -333,8 +333,7 @@ class _CustomDropdownButtonState<T> extends State<CustomDropdownButton<T>> {
                 //starting the calculation for the new layer
                 if (key.currentContext != null) {
                   //declaring the single item height
-                  final double singleHeight =
-                      widget.hide ? widget.height : widget.height;
+                  final double singleHeight = key.currentContext!.size!.height;
                   //calculating the total list height
                   final double totalHeigh =
                       //checking if the user had inserted a max height for the list and

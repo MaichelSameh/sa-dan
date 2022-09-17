@@ -23,7 +23,7 @@ class ProductServices
 
   final HttpConfig _httpConfig = HttpConfig.instance();
 
-  final String link = ApiConstants.category_path;
+  final String link = ApiConstants.product_path;
 
   @override
   Future<List<ProductInfo>> getAll({
@@ -34,7 +34,7 @@ class ProductServices
     try {
       await HttpConfig.instance().checkConnectivity();
       Uri localLink = _httpConfig.getApiLink(
-        ApiConstants.category_path,
+        link,
         <String, String>{"lang": lang ?? "en"},
       );
       http.Response res = await http.get(

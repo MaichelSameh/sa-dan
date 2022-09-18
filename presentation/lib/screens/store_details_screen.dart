@@ -93,7 +93,7 @@ class _StoreDetailsScreenState extends State<StoreDetailsScreen> {
                 padding: EdgeInsets.zero,
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 500,
-                  childAspectRatio: 500 / 211,
+                  childAspectRatio: 375 / 211,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                 ),

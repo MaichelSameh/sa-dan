@@ -141,19 +141,22 @@ class _ProductsScreenState extends State<ProductsScreen> {
               footer: const CustomRefreshFooter(),
               enablePullUp: true,
               controller: refreshController,
-              child: GridView(
-                padding: EdgeInsets.zero,
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 500,
-                  childAspectRatio: 500 / 211,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                ),
-                children: <Widget>[
-                  for (ProductInfo product in products)
-                    ProductCard(product: product),
-                ],
-              ),
+              child: products.isEmpty
+                  ? const SizedBox()
+                  : GridView(
+                      padding: EdgeInsets.zero,
+                      gridDelegate:
+                          const SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 500,
+                        childAspectRatio: 375 / 211,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                      ),
+                      children: <Widget>[
+                        for (ProductInfo product in products)
+                          ProductCard(product: product),
+                      ],
+                    ),
             ),
           ),
         ],

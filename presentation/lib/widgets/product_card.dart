@@ -21,7 +21,7 @@ class ProductCard extends StatelessWidget {
           context: context,
           constrain: constraints,
           customModelHeight: 211,
-          customModelWidth: 500,
+          customModelWidth: 375,
         );
         return GestureDetector(
           onTap: () {

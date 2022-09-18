@@ -32,24 +32,20 @@ class _CategoriesPageState extends State<CategoriesPage> {
         SizedBox(height: size.height(mobile: 13)),
         Center(
           child: CustomTextFormField(
-            width: size.width(mobile: 260),
-            height: 30,
+            width: size.width(mobile: 300),
+            height: 40,
             padding: EdgeInsets.symmetric(
               horizontal: size.width(mobile: 12),
             ),
             controller: searchController,
             textInputAction: TextInputAction.search,
             hint: "search-hint".tr,
-            style: Theme.of(context)
-                .textTheme
-                .bodySmall!
-                .copyWith(fontSize: Get.locale?.languageCode == "ar" ? 6 : 8),
+            style: Theme.of(context).textTheme.bodySmall,
             hintStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
-                  fontSize: Get.locale?.languageCode == "ar" ? 6 : 8,
                   color: Palette.primary_color,
                 ),
             prefixWidget: Padding(
-              padding: EdgeInsets.symmetric(vertical: size.height(mobile: 6)),
+              padding: EdgeInsets.symmetric(vertical: size.height(mobile: 12)),
               child: CustomImage(imagePath: Dir.getIconPath("search")),
             ),
             onSubmit: (String text) {

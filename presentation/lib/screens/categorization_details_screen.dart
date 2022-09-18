@@ -103,8 +103,8 @@ class _CategorizationDetailsScreenState
                   SizedBox(height: size.height(mobile: 17)),
                   Center(
                     child: CustomTextFormField(
-                      width: size.width(mobile: 260),
-                      height: 30,
+                      width: size.width(mobile: 300),
+                      height: 40,
                       padding: EdgeInsets.symmetric(
                         horizontal: size.width(mobile: 12),
                       ),
@@ -115,25 +115,24 @@ class _CategorizationDetailsScreenState
                           "for": category.name,
                         },
                       ),
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          fontSize: Get.locale?.languageCode == "ar" ? 6 : 8),
-                      hintStyle: Theme.of(context)
-                          .textTheme
-                          .labelSmall!
-                          .copyWith(
-                            fontSize: Get.locale?.languageCode == "ar" ? 6 : 8,
-                            color: Palette.primary_color,
-                          ),
+                      style: Theme.of(context).textTheme.bodySmall,
+                      hintStyle:
+                          Theme.of(context).textTheme.labelSmall!.copyWith(
+                                color: Palette.primary_color,
+                              ),
                       prefixWidget: Padding(
                         padding: EdgeInsets.symmetric(
-                            vertical: size.height(mobile: 6)),
+                            vertical: size.height(mobile: 12)),
                         child:
                             CustomImage(imagePath: Dir.getIconPath("search")),
                       ),
                       onSubmit: (String text) {
                         Get.toNamed(
                           SearchProductsScreen.route_name,
-                          arguments: FilterInfo(keyword: text),
+                          arguments: FilterInfo(
+                            keyword: text,
+                            categorizationId: category.id,
+                          ),
                         );
                         searchController.clear();
                       },

@@ -25,7 +25,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
     return ListView(
       padding: EdgeInsets.zero,
       children: <Widget>[
-        SizedBox(height: size.height(mobile: 15) + size.topPadding),
+        SizedBox(height: size.topPadding),
         const CustomAppBar(),
         SizedBox(height: size.height(mobile: 13)),
         const BannersSection(),

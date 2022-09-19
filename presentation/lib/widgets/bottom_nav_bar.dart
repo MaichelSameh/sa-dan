@@ -24,12 +24,13 @@ class BottomNavBar extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(
                 top: size.width(mobile: 35),
-                bottom: size.bottomPadding,
               ),
               child: Container(
                 width: double.infinity,
-                padding:
-                    EdgeInsets.symmetric(vertical: size.height(mobile: 16)),
+                padding: EdgeInsets.only(
+                  top: size.height(mobile: 16),
+                  bottom: size.height(mobile: 16) + size.bottomPadding,
+                ),
                 decoration: BoxDecoration(
                   color: Theme.of(context).scaffoldBackgroundColor,
                   borderRadius: BorderRadius.only(

@@ -98,7 +98,7 @@ class _SearchProductsScreenState extends State<SearchProductsScreen> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          SizedBox(height: size.height(mobile: 10) + size.topPadding),
+          SizedBox(height: size.topPadding),
           const CustomAppBar(),
           Center(
             child: CustomTextFormField(

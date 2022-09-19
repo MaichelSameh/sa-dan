@@ -39,7 +39,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
               padding: EdgeInsets.symmetric(horizontal: size.width(mobile: 40)),
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 134,
+                maxCrossAxisExtent: 142,
                 childAspectRatio: 142 / 134,
                 crossAxisSpacing: 30,
                 mainAxisSpacing: 40,
@@ -47,50 +47,62 @@ class _LanguageScreenState extends State<LanguageScreen> {
               children: <Widget>[
                 for (LanguageInfo language
                     in Localization.getInstance().supportedLanguages)
-                  GestureDetector(
-                    onTap: () {
-                      Localization.getInstance()
-                          .setLocale(language.getLocale());
-                      setState(() {});
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      height: double.infinity,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color:
+                  LayoutBuilder(builder:
+                      (BuildContext context, BoxConstraints constraints) {
+                    Size size = Size(
+                      context: context,
+                      constrain: constraints,
+                      customModelHeight: 134,
+                      customModelWidth: 142,
+                    );
+                    return GestureDetector(
+                      onTap: () {
+                        Localization.getInstance()
+                            .setLocale(language.getLocale());
+                        setState(() {});
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: language.languageCode ==
+                                    Get.locale?.languageCode
+                                ? Palette.primary_color
+                                : const Color.fromRGBO(151, 173, 182, 1),
+                          ),
+                          borderRadius:
+                              BorderRadius.circular(size.width(mobile: 25)),
+                          color: const Color.fromRGBO(247, 248, 249, 1),
+                          boxShadow:
                               language.languageCode == Get.locale?.languageCode
-                                  ? Palette.primary_color
-                                  : const Color.fromRGBO(151, 173, 182, 1),
+                                  ? const <BoxShadow>[
+                                      BoxShadow(
+                                        color: Color.fromRGBO(0, 0, 0, 0.25),
+                                        blurRadius: 10,
+                                        offset: Offset(0, 4),
+                                      ),
+                                    ]
+                                  : null,
                         ),
-                        borderRadius:
-                            BorderRadius.circular(size.width(mobile: 25)),
-                        color: const Color.fromRGBO(247, 248, 249, 1),
-                        boxShadow:
-                            language.languageCode == Get.locale?.languageCode
-                                ? const <BoxShadow>[
-                                    BoxShadow(
-                                      color: Color.fromRGBO(0, 0, 0, 0.25),
-                                      blurRadius: 10,
-                                      offset: Offset(0, 4),
-                                    ),
-                                  ]
-                                : null,
+                        alignment: Alignment.center,
+                        child: Text(
+                          language.languageTitle.tr,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                                color: language.languageCode ==
+                                        Get.locale?.languageCode
+                                    ? Palette.primary_color
+                                    : const Color.fromRGBO(151, 173, 182, 1),
+                                fontWeight: FontWeight.bold,
+                              ),
+                          textScaleFactor: 1,
+                        ),
                       ),
-                      alignment: Alignment.center,
-                      child: Text(
-                        language.languageTitle.tr,
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              color: language.languageCode ==
-                                      Get.locale?.languageCode
-                                  ? Palette.primary_color
-                                  : const Color.fromRGBO(151, 173, 182, 1),
-                              fontWeight: FontWeight.bold,
-                            ),
-                        textScaleFactor: 1,
-                      ),
-                    ),
-                  ),
+                    );
+                  }),
               ],
             ),
           ),

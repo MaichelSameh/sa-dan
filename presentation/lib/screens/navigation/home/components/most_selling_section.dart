@@ -81,7 +81,7 @@ class _MostSellingSectionState extends State<MostSellingSection> {
                       physics: const NeverScrollableScrollPhysics(),
                       gridDelegate:
                           const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 160,
+                        maxCrossAxisExtent: 170,
                         childAspectRatio: 160 / 133,
                         mainAxisSpacing: 13,
                         crossAxisSpacing: 13,

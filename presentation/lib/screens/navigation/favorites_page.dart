@@ -51,7 +51,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
     Size size = Size(context: context);
     return Column(
       children: <Widget>[
-        SizedBox(height: size.height(mobile: 15) + size.topPadding),
+        SizedBox(height: size.topPadding),
         CustomAppBar(title: "favorites".tr),
         Container(
           height: size.height(mobile: 1),

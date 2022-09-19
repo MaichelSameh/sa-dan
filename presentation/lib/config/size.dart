@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 enum ScreenSize { pc, tablet, mobile }
@@ -71,7 +72,9 @@ class Size {
   }
 
   double get topPadding => MediaQuery.of(_context).padding.top;
-  double get bottomPadding => MediaQuery.of(_context).padding.bottom;
+  double get bottomPadding => defaultTargetPlatform == TargetPlatform.iOS
+      ? 0
+      : MediaQuery.of(_context).padding.bottom;
   double get leftPadding => MediaQuery.of(_context).padding.left;
   double get rightPadding => MediaQuery.of(_context).padding.right;
 

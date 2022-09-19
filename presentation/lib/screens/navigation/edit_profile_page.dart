@@ -85,7 +85,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          SizedBox(height: size.height(mobile: 15) + size.topPadding),
+          SizedBox(height: size.topPadding),
           CustomAppBar(title: "profile".tr),
           Container(
             height: size.height(mobile: 1),
@@ -289,7 +289,36 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                                     .scaffoldBackgroundColor),
                                       ),
                                     ),
-                                  )
+                                  ),
+                                  SizedBox(height: size.height(mobile: 50)),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.dialog(const DeleteAccountDialog());
+                                    },
+                                    child: Container(
+                                      color: Colors.transparent,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          CustomImage(
+                                              imagePath:
+                                                  Dir.getIconPath("trash")),
+                                          SizedBox(
+                                              width: size.width(mobile: 10)),
+                                          Text(
+                                            "delete-account".tr,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .copyWith(
+                                                    color: Palette.red_color),
+                                            textScaleFactor: 1,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

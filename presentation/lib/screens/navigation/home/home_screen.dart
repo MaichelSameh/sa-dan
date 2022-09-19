@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
       body: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          SizedBox(height: size.height(mobile: 15) + size.topPadding),
+          SizedBox(height: size.topPadding),
           const CustomAppBar(),
           SizedBox(height: size.height(mobile: 13)),
           const BannersSection(),

@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../../../../config/config.dart';
 import '../../../../controllers/home_controller.dart';
 import '../../../../widgets/widgets.dart';
-import '../../../product_details_screen.dart';
+import '../../../product_details/product_details_screen.dart';
 import '../../../products_screen.dart';
 
 class MostSellingSection extends StatefulWidget {
@@ -101,7 +101,19 @@ class _MostSellingSectionState extends State<MostSellingSection> {
                               onTap: () {
                                 Get.toNamed(
                                   ProductDetailsScreen.route_name,
-                                  arguments: product,
+                                  arguments: <String, dynamic>{
+                                    "product": product,
+                                    "on-product-change": (ProductInfo product) {
+                                      Get.find<HomeController>()
+                                              .mostSellingProducts[
+                                          Get.find<HomeController>()
+                                              .mostSellingProducts
+                                              .indexWhere(
+                                                  (ProductInfo element) =>
+                                                      element.id ==
+                                                      product.id)] = product;
+                                    }
+                                  },
                                 );
                               },
                               child: Container(

@@ -42,9 +42,9 @@ class AddressInfo {
     _createdAt = DateTime.parse(data["created_at"]);
     _id = data["address_id"] ?? data["id"];
     _name = data["name"];
-    _ownerId = data["owner_id"];
+    _ownerId = data["customer_id"] ?? data["owner_id"];
     _phone = data["phone"];
-    _postalCode = data["postal_code"];
+    _postalCode = data["postal_code"] ?? "";
     _streetName = data["street_name"];
     _type = AddressType.values.firstWhere(
       (AddressType element) => element.name == data["type"],

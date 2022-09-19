@@ -2,6 +2,7 @@ import '../enums.dart';
 import '../utils/numbers_util.dart';
 import '../utils/string_util.dart';
 import 'address_info.dart';
+import 'cart_item_info.dart';
 import 'price_info.dart';
 
 class OrderInfo {
@@ -28,6 +29,7 @@ class OrderInfo {
   late OrderStatus _status;
   late PriceInfo _total;
   late PriceInfo _totalBeforePromoCode;
+  late CartItemInfo _product;
 
   OrderInfo({
     required AddressInfo address,
@@ -53,6 +55,7 @@ class OrderInfo {
     required OrderStatus status,
     required PriceInfo total,
     required PriceInfo totalBeforePromoCode,
+    required CartItemInfo product,
   }) {
     _address = address;
     _comment = comment;
@@ -77,6 +80,7 @@ class OrderInfo {
     _status = status;
     _total = total;
     _totalBeforePromoCode = totalBeforePromoCode;
+    _product = product;
   }
 
   OrderInfo.fromJson(Map<String, dynamic> data) {
@@ -107,12 +111,12 @@ class OrderInfo {
     _refundId = data["refund_id"];
     _status = OrderStatus.values.firstWhere(
         (OrderStatus element) =>
-            element.name ==
-            data["order_status"].toString().convertCamelCaseToUnderscore(),
+            element.name.convertCamelCaseToUnderscore() == data["order_status"],
         orElse: () => OrderStatus.orderIsCancelled);
     _total = PriceInfo(price: data["total"].toString().toDouble() ?? 0);
     _totalBeforePromoCode = PriceInfo(
         price: data["total_before_promo_code"].toString().toDouble() ?? 0);
+    _product = CartItemInfo.fromJson(data["product"]);
   }
 
   ///the order's delivering address
@@ -185,8 +189,11 @@ class OrderInfo {
   ///the order's total price before the promo code discount
   PriceInfo get totalBeforePromoCode => _totalBeforePromoCode;
 
+  ///the order's item
+  CartItemInfo get product => _product;
+
   @override
   String toString() {
-    return 'OrderInfo(_address: $_address, _comment: $_comment, _createdAt: $_createdAt, _customerId: $_customerId, _driverId: $_driverId, _email: $_email, _id: $_id, _inShipping: $_inShipping, _invoiceId: $_invoiceId, _isApproved: $_isApproved, _isCancelled: $_isCancelled, _isDelivered: $_isDelivered, _isPaid: $_isPaid, _isPreparing: $_isPreparing, _name: $_name, _paymentId: $_paymentId, _paymentMethod: $_paymentMethod, _phone: $_phone, _promoCode: $_promoCode, _refundId: $_refundId, _status: $_status, _total: $_total, _totalBeforePromoCode: $_totalBeforePromoCode)';
+    return 'OrderInfo(_address: $_address, _comment: $_comment, _createdAt: $_createdAt, _customerId: $_customerId, _driverId: $_driverId, _email: $_email, _id: $_id, _inShipping: $_inShipping, _invoiceId: $_invoiceId, _isApproved: $_isApproved, _isCancelled: $_isCancelled, _isDelivered: $_isDelivered, _isPaid: $_isPaid, _isPreparing: $_isPreparing, _name: $_name, _paymentId: $_paymentId, _paymentMethod: $_paymentMethod, _phone: $_phone, _promoCode: $_promoCode, _refundId: $_refundId, _status: $_status, _total: $_total, _totalBeforePromoCode: $_totalBeforePromoCode, _product: $_product)';
   }
 }

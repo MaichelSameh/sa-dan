@@ -4,17 +4,18 @@ import 'package:data/models/classification_info.dart';
 import 'package:data/models/order_info.dart';
 import 'package:data/models/price_info.dart';
 import 'package:data/models/product_info.dart';
-import 'package:domain/services/order_services.dart';
+import 'package:domain/services/customer_order_services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:get/get.dart';
 
-import '../config/config.dart';
-import '../controllers/controllers.dart';
-import '../widgets/widgets.dart';
-import 'address/addresses_screen.dart';
-import 'navigation/navigation_screen.dart';
+import '../../config/config.dart';
+import '../../controllers/controllers.dart';
+import '../../widgets/widgets.dart';
+import '../address/addresses_screen.dart';
+import '../navigation/navigation_screen.dart';
+import 'components/favorite_button.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   // ignore: constant_identifier_names
@@ -26,7 +27,10 @@ class ProductDetailsScreen extends StatefulWidget {
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
-  ProductInfo product = Get.arguments;
+  ProductInfo product = Get.arguments["product"];
+
+  void Function(ProductInfo) onProductChange =
+      Get.arguments["on-product-change"];
 
   String? selectedClassificationId;
 
@@ -38,7 +42,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   void initState() {
     super.initState();
     if (product.classification.isNotEmpty) {
-      selectedClassificationId = product.classification.first.classificationId;
+      selectedClassificationId = product.classification.first.id;
     }
   }
 
@@ -201,8 +205,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                         .firstWhereOrNull(
                                                             (ClassificationInfo
                                                                     element) =>
-                                                                element
-                                                                    .classificationId ==
+                                                                element.id ==
                                                                 selectedClassificationId)
                                                         ?.price
                                                         .getPrice ??
@@ -269,8 +272,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                           for (ClassificationInfo classification
                                               in product.classification)
                                             CustomDropdownButtonItem<String>(
-                                              value: classification
-                                                  .classificationId,
+                                              value: classification.id,
                                               child: Text(
                                                 classification.size.name,
                                                 style: Theme.of(context)
@@ -372,7 +374,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                   vertical:
                                                       size.height(mobile: 5),
                                                   horizontal:
-                                                      size.width(mobile: 12),
+                                                      size.width(mobile: 5),
                                                 ),
                                                 decoration: BoxDecoration(
                                                   border: Border.all(
@@ -423,24 +425,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                     SizedBox(
                                                         width: size.width(
                                                             mobile: 5)),
-                                                    Container(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                        horizontal: size.width(
-                                                            mobile: 12),
-                                                      ),
-                                                      alignment: Alignment
-                                                          .bottomCenter,
-                                                      child: Text(
-                                                        quantity.toString(),
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodySmall!
-                                                            .copyWith(
-                                                                color: Palette
-                                                                    .secondary_color),
-                                                        textScaleFactor: 1,
-                                                      ),
+                                                    Text(
+                                                      quantity.toString(),
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodySmall!
+                                                          .copyWith(
+                                                              color: Palette
+                                                                  .secondary_color),
+                                                      textScaleFactor: 1,
                                                     ),
                                                     SizedBox(
                                                         width: size.width(
@@ -540,7 +533,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                                 }
                                                 Get.dialog(const Preloader());
                                                 OrderInfo _ =
-                                                    await OrderServices()
+                                                    await CustomerOrderServices()
                                                         .makeOrder(
                                                   token:
                                                       Get.find<UserController>()
@@ -600,32 +593,17 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               ],
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              //TODO add the favorite function
-                            },
-                            child: Container(
-                              width: size.width(mobile: 36),
-                              height: size.width(mobile: 36),
-                              margin: EdgeInsetsDirectional.only(
-                                  end: size.width(mobile: 22)),
-                              padding: EdgeInsets.all(size.width(mobile: 12)),
-                              decoration: BoxDecoration(
-                                color:
-                                    Theme.of(context).scaffoldBackgroundColor,
-                                shape: BoxShape.circle,
-                                boxShadow: const <BoxShadow>[
-                                  BoxShadow(
-                                    color: Color.fromRGBO(0, 0, 0, 0.08),
-                                    blurRadius: 25,
-                                    offset: Offset(0, 4),
-                                  ),
-                                ],
-                              ),
-                              child: CustomImage(
-                                  imagePath: Dir.getIconPath("love")),
-                            ),
-                          ),
+                          StatefulBuilder(builder: (BuildContext context,
+                              void Function(void Function()) setState) {
+                            return FavoriteButton(
+                              onChange: (ProductInfo product) {
+                                this.product = product;
+                                onProductChange(product);
+                                setState(() {});
+                              },
+                              product: product,
+                            );
+                          }),
                         ],
                       ),
                     ),

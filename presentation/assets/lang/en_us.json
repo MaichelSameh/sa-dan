@@ -113,6 +113,7 @@
     "number-of-portion": "Number of portion",
     "total-price": "Total price",
     "order-now": "Order now",
+    "ordered-successfully": "You had finished your order successfully",
     "shipping-locations": "Shipping locations",
     "add-new-location": "Add new location",
     "edit": "Edit",
@@ -125,5 +126,11 @@
     "send": "Send",
     "reset": "Reset",
     "apply": "Apply",
-    "no-products": "No products found"
+    "no-products": "No products found",
+    "quantity:": "Quantity:",
+    "order-is-delivered": "Delivered",
+    "order-is-cancelled": "Cancelled",
+    "order-not-approved-yet": "Active",
+    "sar": "SAR",
+    "incoming-orders": "Incoming orders"
 }

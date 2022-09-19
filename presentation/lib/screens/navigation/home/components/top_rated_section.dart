@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../../../../config/config.dart';
 import '../../../../controllers/home_controller.dart';
 import '../../../../widgets/widgets.dart';
-import '../../../product_details_screen.dart';
+import '../../../product_details/product_details_screen.dart';
 import '../../../products_screen.dart';
 
 class TopRatedSection extends StatefulWidget {
@@ -84,7 +84,17 @@ class _TopRatedSectionState extends State<TopRatedSection> {
                             onTap: () {
                               Get.toNamed(
                                 ProductDetailsScreen.route_name,
-                                arguments: product,
+                                arguments: <String, dynamic>{
+                                  "product": product,
+                                  "on-product-change": (ProductInfo product) {
+                                    Get.find<HomeController>().topRatedProducts[
+                                        Get.find<HomeController>()
+                                            .topRatedProducts
+                                            .indexWhere((ProductInfo element) =>
+                                                element.id ==
+                                                product.id)] = product;
+                                  }
+                                },
                               );
                             },
                             child: Container(

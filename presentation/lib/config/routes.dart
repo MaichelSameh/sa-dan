@@ -23,8 +23,6 @@ Map<String, Widget Function(BuildContext)> router =
       const LanguageScreen(key: Key(LanguageScreen.route_name)),
   OnboardingScreen.route_name: (_) =>
       const OnboardingScreen(key: Key(OnboardingScreen.route_name)),
-  OrdersScreen.route_name: (_) =>
-      const OrdersScreen(key: Key(OrdersScreen.route_name)),
   SplashScreen.route_name: (_) =>
       const SplashScreen(key: Key(SplashScreen.route_name)),
   StoreDetailsScreen.route_name: (_) =>
@@ -51,4 +49,11 @@ Map<String, Widget Function(BuildContext)> router =
   SearchProductsScreen.route_name: (_) =>
       const SearchProductsScreen(key: Key(SearchProductsScreen.route_name)),
   //end of product routes
+
+  //order routes
+  IncomingOrdersScreen.route_name: (_) =>
+      const IncomingOrdersScreen(key: Key(IncomingOrdersScreen.route_name)),
+  OrdersScreen.route_name: (_) =>
+      const OrdersScreen(key: Key(OrdersScreen.route_name)),
+  //end of order routes
 };

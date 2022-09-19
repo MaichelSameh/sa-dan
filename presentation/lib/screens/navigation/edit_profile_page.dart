@@ -267,6 +267,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                               token: Get.find<UserController>()
                                                   .token!
                                                   .token,
+                                              type: profile!.type,
                                               name: nameController.text,
                                               phoneNumber: phoneController.text,
                                               email: emailController.text,

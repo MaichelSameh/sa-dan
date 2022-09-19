@@ -1,3 +1,5 @@
+import '../enums.dart';
+
 class ProfileInfo {
   late String _email;
   late String _id;
@@ -5,6 +7,7 @@ class ProfileInfo {
   String? _logoUrl;
   late String _phoneNumber;
   late String? _bio;
+  late UserType _type;
 
   ProfileInfo({
     required String email,
@@ -12,6 +15,7 @@ class ProfileInfo {
     required String name,
     String? logoUrl,
     required String phoneNumber,
+    required UserType type,
     String? fcm = "",
     String? bio,
   }) {
@@ -21,6 +25,7 @@ class ProfileInfo {
     _logoUrl = logoUrl;
     _phoneNumber = phoneNumber;
     _bio = bio;
+    _type = type;
   }
 
   ProfileInfo.fromJson(Map<String, dynamic> data) {
@@ -30,6 +35,10 @@ class ProfileInfo {
     _logoUrl = data["logo_url"];
     _phoneNumber = data["phone"] ?? "";
     _bio = data["bio"];
+    _type = UserType.values.firstWhere(
+      (UserType element) => element.name == data["type"],
+      orElse: () => UserType.customer,
+    );
   }
 
   ///the email address associated with the email
@@ -50,8 +59,11 @@ class ProfileInfo {
   ///profile's bio
   String? get bio => _bio;
 
+  ///the user's type
+  UserType get type => _type;
+
   @override
   String toString() {
-    return 'ProfileInfo(_email: $_email, _id: $_id, _name: $_name, _logoUrl: $_logoUrl, _phoneNumber: $_phoneNumber, _bio: $_bio)';
+    return 'ProfileInfo(_email: $_email, _id: $_id, _name: $_name, _logoUrl: $_logoUrl, _phoneNumber: $_phoneNumber, _bio: $_bio, _type: $_type)';
   }
 }

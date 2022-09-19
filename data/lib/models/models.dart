@@ -1,5 +1,6 @@
 export 'address_info.dart';
 export 'banner_info.dart';
+export 'cart_item_info.dart';
 export 'category_info.dart';
 export 'classification_info.dart';
 export 'faq_info.dart';

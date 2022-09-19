@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../logger.dart';
 import 'auth_services.dart';
+import 'fcm_services.dart';
 import 'profile_services.dart';
 
 class TokenServices {
@@ -47,8 +48,9 @@ class TokenServices {
   Future<LocalTokenInfo> saveToken(TokenInfo token) async {
     try {
       ProfileInfo profile =
-          await ProfileServices().getProfile(token: token.combinedToken);
+          (await FcmServices().updateFcm(token: token.combinedToken))!;
       LocalTokenInfo localData = LocalTokenInfo(
+        type: profile.type,
         token: token,
         name: profile.name,
         phoneNumber: profile.phoneNumber,
@@ -70,6 +72,7 @@ class TokenServices {
     try {
       LocalTokenInfo? temp = await restoreToken();
       LocalTokenInfo localData = LocalTokenInfo(
+        type: profile.type,
         token: temp!.token,
         name: profile.name,
         phoneNumber: profile.phoneNumber,

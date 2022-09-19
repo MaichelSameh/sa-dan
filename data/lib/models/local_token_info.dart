@@ -1,5 +1,6 @@
 import 'package:intl/intl.dart';
 
+import '../enums.dart';
 import 'token_info.dart';
 
 class LocalTokenInfo {
@@ -9,6 +10,7 @@ class LocalTokenInfo {
   String? _logoUrl;
   late TokenInfo _token;
   late String _userId;
+  late UserType _type;
 
   LocalTokenInfo({
     required TokenInfo token,
@@ -16,6 +18,7 @@ class LocalTokenInfo {
     required String phoneNumber,
     String? logoUrl,
     required String email,
+    required UserType type,
     required String userId,
   }) {
     _token = token;
@@ -23,6 +26,7 @@ class LocalTokenInfo {
     _phoneNumber = phoneNumber;
     _logoUrl = logoUrl;
     _email = email;
+    _type = type;
     _userId = userId;
   }
 
@@ -44,6 +48,9 @@ class LocalTokenInfo {
   ///the user's id
   String get userId => _userId;
 
+  ///the user's type
+  UserType get type => _type;
+
   LocalTokenInfo.fromMap(Map<String, dynamic> data) {
     _token = TokenInfo.fromJson(data["token"]);
     _name = data["name"];
@@ -51,6 +58,10 @@ class LocalTokenInfo {
     _email = data["email"];
     _logoUrl = data["logo_url"];
     _userId = data["user-id"];
+    _type = UserType.values.firstWhere(
+      (UserType element) => element.name == data["type"],
+      orElse: () => UserType.customer,
+    );
   }
 
   Map<String, dynamic> toMap() {
@@ -68,6 +79,7 @@ class LocalTokenInfo {
       "name": name,
       "email": email,
       "phone_number": phoneNumber,
+      "type": type.name,
       if (logoUrl != null) "logo_url": logoUrl,
     };
   }

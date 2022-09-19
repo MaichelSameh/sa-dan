@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../config/config.dart';
-import '../screens/product_details_screen.dart';
+import '../screens/product_details/product_details_screen.dart';
 import 'custom_image.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductInfo product;
+  final void Function(ProductInfo) onProductChange;
   const ProductCard({
     Key? key,
     required this.product,
+    required this.onProductChange,
   }) : super(key: key);
 
   @override
@@ -27,7 +29,10 @@ class ProductCard extends StatelessWidget {
           onTap: () {
             Get.toNamed(
               ProductDetailsScreen.route_name,
-              arguments: product,
+              arguments: <String, dynamic>{
+                "product": product,
+                "on-product-change": onProductChange
+              },
             );
           },
           child: Container(

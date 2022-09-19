@@ -8,7 +8,12 @@ extension MapToList on List<dynamic> {
     //looping into the list
     for (dynamic item in this) {
       //converting the map into the object
-      list.add(AddressInfo.fromJson(item));
+      try {
+        list.add(AddressInfo.fromJson(item));
+      } catch (error) {
+        // ignore: avoid_print
+        print(error);
+      }
     }
     //returning the list
     return list;
@@ -34,7 +39,12 @@ extension MapToList on List<dynamic> {
     //looping into the list
     for (dynamic item in this) {
       //converting the map into the object
-      list.add(CategoryInfo.fromJson(item));
+      try {
+        list.add(CategoryInfo.fromJson(item));
+      } catch (error) {
+        // ignore: avoid_print
+        print(error);
+      }
     }
     //returning the list
     return list;
@@ -47,7 +57,12 @@ extension MapToList on List<dynamic> {
     //looping into the list
     for (dynamic item in this) {
       //converting the map into the object
-      list.add(ClassificationInfo.fromJson(item));
+      try {
+        list.add(ClassificationInfo.fromJson(item));
+      } catch (error) {
+        // ignore: avoid_print
+        print(error);
+      }
     }
     //returning the list
     return list;
@@ -60,7 +75,12 @@ extension MapToList on List<dynamic> {
     //looping into the list
     for (dynamic item in this) {
       //converting the map into the object
-      list.add(FaqInfo.fromJson(item));
+      try {
+        list.add(FaqInfo.fromJson(item));
+      } catch (error) {
+        // ignore: avoid_print
+        print(error);
+      }
     }
     //returning the list
     return list;
@@ -73,7 +93,12 @@ extension MapToList on List<dynamic> {
     //looping into the list
     for (dynamic item in this) {
       //converting the map into the object
-      list.add(NotificationInfo.fromJson(item));
+      try {
+        list.add(NotificationInfo.fromJson(item));
+      } catch (error) {
+        // ignore: avoid_print
+        print(error);
+      }
     }
     //returning the list
     return list;
@@ -86,7 +111,12 @@ extension MapToList on List<dynamic> {
     //looping into the list
     for (dynamic item in this) {
       //converting the map into the object
-      list.add(OrderInfo.fromJson(item));
+      try {
+        list.add(OrderInfo.fromJson(item));
+      } catch (error) {
+        // ignore: avoid_print
+        print(error);
+      }
     }
     //returning the list
     return list;
@@ -99,7 +129,12 @@ extension MapToList on List<dynamic> {
     //looping into the list
     for (dynamic item in this) {
       //converting the map into the object
-      list.add(ProductInfo.fromJson(item));
+      try {
+        list.add(ProductInfo.fromJson(item));
+      } catch (error) {
+        // ignore: avoid_print
+        print(error);
+      }
     }
     //returning the list
     return list;
@@ -112,7 +147,12 @@ extension MapToList on List<dynamic> {
     //looping into the list
     for (dynamic item in this) {
       //converting the map into the object
-      list.add(ReviewInfo.fromJson(item));
+      try {
+        list.add(ReviewInfo.fromJson(item));
+      } catch (error) {
+        // ignore: avoid_print
+        print(error);
+      }
     }
     //returning the list
     return list;
@@ -125,7 +165,12 @@ extension MapToList on List<dynamic> {
     //looping into the list
     for (dynamic item in this) {
       //converting the map into the object
-      list.add(StoreInfo.fromJson(item));
+      try {
+        list.add(StoreInfo.fromJson(item));
+      } catch (error) {
+        // ignore: avoid_print
+        print(error);
+      }
     }
     //returning the list
     return list;

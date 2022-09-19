@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:data/enums.dart';
 import 'package:domain/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -115,6 +116,16 @@ class MenuScreen extends StatelessWidget {
                                 Get.toNamed(OrdersScreen.route_name);
                               },
                             ),
+                          if (Get.find<UserController>().token?.type ==
+                              UserType.driver)
+                            buildItem(
+                              size: size,
+                              context: context,
+                              label: "incoming-orders".tr,
+                              onTap: () {
+                                Get.toNamed(IncomingOrdersScreen.route_name);
+                              },
+                            ),
                           if (Get.find<UserController>().token != null)
                             buildItem(
                               size: size,
@@ -127,7 +138,9 @@ class MenuScreen extends StatelessWidget {
                                 );
                               },
                             ),
-                          if (Get.find<UserController>().token != null)
+                          if (Get.find<UserController>().token != null &&
+                              Get.find<UserController>().token?.type !=
+                                  UserType.driver)
                             buildItem(
                               size: size,
                               context: context,
@@ -136,7 +149,9 @@ class MenuScreen extends StatelessWidget {
                                 Get.toNamed(NotificationsScreen.route_name);
                               },
                             ),
-                          if (Get.find<UserController>().token != null)
+                          if (Get.find<UserController>().token != null &&
+                              Get.find<UserController>().token?.type !=
+                                  UserType.driver)
                             buildItem(
                               size: size,
                               context: context,

@@ -14,6 +14,7 @@ class ProductInfo {
   late String _mainMediaUrl;
   late String _name;
   late int _viewCount;
+  late bool _isFavorite;
 
   ProductInfo({
     required double averageRate,
@@ -27,6 +28,7 @@ class ProductInfo {
     required String mainMediaUrl,
     required String name,
     required int viewCount,
+    required bool isFavorite,
   }) {
     _averageRate = averageRate;
     _categoryId = categoryId;
@@ -39,6 +41,7 @@ class ProductInfo {
     _mainMediaUrl = mainMediaUrl;
     _name = name;
     _viewCount = viewCount;
+    _isFavorite = isFavorite;
   }
 
   ProductInfo.fromJson(Map<String, dynamic> data) {
@@ -54,6 +57,7 @@ class ProductInfo {
     _mainMediaUrl = data["main_media_url"];
     _name = data["name_by_lang"];
     _viewCount = data["views_count"].toString().toInt() ?? 0;
+    _isFavorite = data["is_favorited"] == true;
     _mainMedia = <String>[];
     for (dynamic item in (data["media_links"] ?? <dynamic>[])) {
       _mainMedia.add(item.toString());
@@ -93,8 +97,41 @@ class ProductInfo {
   ///the product's view count
   int get viewCount => _viewCount;
 
+  ///wether the user had added this product to the favorites or not
+  bool get isFavorite => _isFavorite;
+
   @override
   String toString() {
-    return 'ProductInfo(_averageRate: $_averageRate, _categoryId: $_categoryId, _createdAt: $_createdAt, _creatorId: $_creatorId, _classification: $_classification, _description: $_description, _id: $_id, _mainMedia: $_mainMedia, _mainMediaUrl: $_mainMediaUrl, _name: $_name, _viewCount: $_viewCount)';
+    return 'ProductInfo(_averageRate: $_averageRate, _categoryId: $_categoryId, _createdAt: $_createdAt, _creatorId: $_creatorId, _classification: $_classification, _description: $_description, _id: $_id, _mainMedia: $_mainMedia, _mainMediaUrl: $_mainMediaUrl, _name: $_name, _viewCount: $_viewCount, _isFavorite: $_isFavorite)';
+  }
+
+  ProductInfo copyWith({
+    double? averageRate,
+    String? categoryId,
+    DateTime? createdAt,
+    String? creatorId,
+    List<ClassificationInfo>? classification,
+    String? description,
+    String? id,
+    List<String>? mainMedia,
+    String? mainMediaUrl,
+    String? name,
+    int? viewCount,
+    bool? isFavorite,
+  }) {
+    return ProductInfo(
+      averageRate: averageRate ?? this.averageRate,
+      categoryId: categoryId ?? this.categoryId,
+      createdAt: createdAt ?? this.createdAt,
+      creatorId: creatorId ?? this.creatorId,
+      classification: classification ?? this.classification,
+      description: description ?? this.description,
+      id: id ?? this.id,
+      mainMedia: mainMedia ?? this.mainMedia,
+      mainMediaUrl: mainMediaUrl ?? this.mainMediaUrl,
+      name: name ?? this.name,
+      viewCount: viewCount ?? this.viewCount,
+      isFavorite: isFavorite ?? this.isFavorite,
+    );
   }
 }

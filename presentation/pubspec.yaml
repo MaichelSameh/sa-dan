@@ -36,7 +36,8 @@ dependencies:
     path: ../data
   domain:
     path: ../domain
-  file_picker: ^5.0.1
+  firebase_core: ^1.22.0
+  firebase_messaging: ^13.0.2
   flutter:
     sdk: flutter
   flutter_localizations:
@@ -44,7 +45,6 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   flutter_svg: ^1.1.5
   flutter_widget_from_html_core: ^0.8.5+3
-  fullscreen: ^1.0.3
   get: ^4.6.5
   image_picker: ^0.8.5+3
   permission_handler: ^10.0.0

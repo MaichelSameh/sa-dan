@@ -7,7 +7,7 @@ export 'contact_services.dart';
 export 'general_services.dart';
 export 'notification_channel_services.dart';
 export 'notification_services.dart';
-export 'order_services.dart';
+export 'customer_order_services.dart';
 export 'product_services.dart';
 export 'profile_services.dart';
 export 'reset_password_services.dart';

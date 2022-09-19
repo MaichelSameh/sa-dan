@@ -111,10 +111,4 @@ class HomeController extends GetxController {
       getCategories(),
     ]);
   }
-
-  @override
-  void onInit() {
-    super.onInit();
-    init();
-  }
 }

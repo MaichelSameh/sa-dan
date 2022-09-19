@@ -55,14 +55,19 @@ class ApiConstants {
   static const String address_path = "user/addresses";
   //end of address path
 
-  //order paths
-  static const String delivered_orders_path =
+  //customer order paths
+  static const String customer_delivered_orders_path =
       "customer/profile/orders/delivered";
-  static const String active_orders_path = "customer/profile/orders/active";
-  static const String make_order_path = "products/order";
-  static const String mark_order_as_paid_path = "orders";
-  static const String cancel_order_path = "orders/cancel";
-  //end of order paths
+  static const String customer_active_orders_path =
+      "customer/profile/orders/active";
+  static const String customer_make_order_path = "products/order";
+  static const String order_path = "orders";
+  static const String customer_cancel_order_path = "orders/cancel";
+  //end of customer order paths
+
+  //driver order paths
+  static const String driver_running_orders = "driver/profile/orders/running";
+  //end of driver order paths
 
   //store path
   static const String store_path = "stores";

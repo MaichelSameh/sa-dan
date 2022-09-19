@@ -148,7 +148,14 @@ class _SearchProductsScreenState extends State<SearchProductsScreen> {
                       ),
                       children: <Widget>[
                         for (ProductInfo product in products)
-                          ProductCard(product: product),
+                          ProductCard(
+                            product: product,
+                            onProductChange: (ProductInfo product) {
+                              products[products.indexWhere(
+                                  (ProductInfo element) =>
+                                      element.id == product.id)] = product;
+                            },
+                          ),
                       ],
                     )
                   : !refreshController.isRefresh

@@ -112,6 +112,7 @@
     "number-of-portion": "عدد القطع",
     "total-price": "السعر الكلي",
     "order-now": "اطلب الان",
+    "ordered-successfully": "لقد أنهيت طلبك بنجاح",
     "shipping-locations": "أماكن الشحن",
     "add-new-location": "أضف موقعًا جديدًا",
     "edit": "تعديل",
@@ -124,5 +125,11 @@
     "send": "أرسال",
     "reset": "أعاده تعيين",
     "apply": "تطبيق",
-    "no-products": "لا توجد منتجات"
+    "no-products": "لا توجد منتجات",
+    "quantity:": "الكميه:",
+    "order-is-delivered": "انتهت",
+    "order-is-cancelled": "ألغيت",
+    "order-not-approved-yet": "نشط",
+    "sar": "س ر",
+    "incoming-orders": "الطلبات الواردة"
 }

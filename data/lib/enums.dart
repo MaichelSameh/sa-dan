@@ -8,7 +8,12 @@ enum Stock { inStock, outOffStock }
 
 enum AddressType { home, work, mosque }
 
-enum OrderStatus { orderIsDelivered, orderIsCancelled, orderNotApprovedYet }
+enum OrderStatus {
+  orderIsDelivered,
+  orderIsCancelled,
+  orderNotApprovedYet,
+  incomingOrders,
+}
 
 enum CartAction { increase, decrease }
 

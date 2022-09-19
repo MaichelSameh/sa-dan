@@ -1,3 +1,8 @@
+import 'dart:convert';
+
+import 'package:domain/services/local_notification_services.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -7,9 +12,35 @@ import 'config/config.dart';
 import 'config/localization.dart';
 import 'screens/splash_screen.dart';
 
+Future<void> onBackgroundNotification(RemoteMessage event) async {}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Localization.initialize();
+  await Firebase.initializeApp();
+  FirebaseMessaging.onMessage.listen(
+    (RemoteMessage notification) async {
+      LocalNotificationServices instance =
+          await LocalNotificationServices.getInstance();
+      instance.showNotification(
+        notification.messageId.hashCode,
+        (notification.notification?.title ??
+                (notification.data["for"] ?? "").toString().toLowerCase())
+            .tr,
+        (notification.notification?.body ??
+                (notification.data["action"] ?? "").toString().toLowerCase())
+            .tr,
+        payload: notification.data,
+      );
+    },
+  );
+  FirebaseMessaging.onBackgroundMessage(onBackgroundNotification);
+  FirebaseMessaging.onMessageOpenedApp
+      .listen((RemoteMessage notification) async {
+    LocalNotificationServices instance =
+        await LocalNotificationServices.getInstance();
+    instance.onMessageOpen(json.encode(notification.data));
+  });
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
   runApp(const MyApp());
 }

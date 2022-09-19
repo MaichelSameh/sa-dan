@@ -99,7 +99,13 @@ class _StoreDetailsScreenState extends State<StoreDetailsScreen> {
                 ),
                 children: <Widget>[
                   for (ProductInfo product in products)
-                    ProductCard(product: product),
+                    ProductCard(
+                      product: product,
+                      onProductChange: (ProductInfo product) {
+                        products[products.indexWhere((ProductInfo element) =>
+                            element.id == product.id)] = product;
+                      },
+                    ),
                 ],
               ),
             ),

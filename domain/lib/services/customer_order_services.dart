@@ -9,9 +9,9 @@ import '../api_constants.dart';
 import '../http_config.dart';
 import '../logger.dart';
 
-class OrderServices {
+class CustomerOrderServices {
   String _tag(String functionName, String variableName) {
-    return "OrderServices: $functionName $variableName";
+    return "CustomerOrderServices: $functionName $variableName";
   }
 
   final HttpConfig _httpConfig = HttpConfig.instance();
@@ -27,8 +27,8 @@ class OrderServices {
       await HttpConfig.instance().checkConnectivity();
       Uri localLink = _httpConfig.getApiLink(
         status == OrderStatus.orderIsDelivered
-            ? ApiConstants.delivered_orders_path
-            : ApiConstants.active_orders_path,
+            ? ApiConstants.customer_delivered_orders_path
+            : ApiConstants.customer_active_orders_path,
         <String, String>{
           "lang": lang ?? "en",
           "page": page.toString(),
@@ -64,7 +64,7 @@ class OrderServices {
     try {
       await HttpConfig.instance().checkConnectivity();
       Uri localLink = _httpConfig.getApiLink(
-        ApiConstants.make_order_path,
+        ApiConstants.customer_make_order_path,
         <String, String>{
           "lang": lang ?? "en",
         },
@@ -104,7 +104,7 @@ class OrderServices {
     try {
       await HttpConfig.instance().checkConnectivity();
       Uri localLink = _httpConfig.getApiLink(
-        "${ApiConstants.mark_order_as_paid_path}/$orderId/mark-as-paid",
+        "${ApiConstants.order_path}/$orderId/mark-as-paid",
         <String, String>{
           "lang": lang ?? "en",
         },
@@ -135,7 +135,7 @@ class OrderServices {
     try {
       await HttpConfig.instance().checkConnectivity();
       Uri localLink = _httpConfig.getApiLink(
-        "${ApiConstants.cancel_order_path}/$orderId",
+        "${ApiConstants.customer_cancel_order_path}/$orderId",
         <String, String>{
           "lang": lang ?? "en",
         },

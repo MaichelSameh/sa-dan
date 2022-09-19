@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../config/config.dart';
+import '../../../controllers/controllers.dart';
 import '../../../widgets/widgets.dart';
 import '../../search_products_screen.dart';
 import 'components/banners_section.dart';
@@ -19,6 +20,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final TextEditingController searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    Get.find<HomeController>().init();
+  }
 
   @override
   Widget build(BuildContext context) {
